@@ -80,9 +80,11 @@ const Contact = () => {
           }`}
         >
           <h2 className="text-5xl md:text-6xl font-bold mb-4 text-transparent bg-clip-text bg-gradient-to-r from-purple-500 to-cyan-500">
+            {/* eslint-disable-next-line react/no-unescaped-entities */}
             Let's Connect
           </h2>
           <p className="text-lg text-gray-400 max-w-2xl mx-auto">
+            {/* eslint-disable-next-line react/no-unescaped-entities */}
             Have an idea or opportunity? Let's bring it to life together.
           </p>
         </div>
@@ -225,6 +227,7 @@ const Contact = () => {
 
             <div className="pt-6 text-gray-400 text-sm leading-relaxed">
               <p className="mb-4">
+                {/* eslint-disable-next-line react/no-unescaped-entities */}
                 I'm always open to discuss new projects, creative ideas or
                 opportunities to be part of your visions.
               </p>

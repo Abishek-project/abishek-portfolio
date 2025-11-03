@@ -17,9 +17,8 @@ const experiences = [
     description:
       "Developing secure, high-performance fintech and enterprise apps using Flutter for mobile and desktop.",
     points: [
-      "Built a fintech desktop app for Migros Bank (Switzerland) with Flutter, boosting delivery speed by 40%.",
+      "Developed a fintech desktop application for a banking client using Flutter, improving delivery speed by 40%.",
       "Enabled real-time multi-device activation via WebSocket, cutting user setup time by 50%.",
-      "Led end-to-end release cycles with zero production issues and on-time delivery.",
       "Designed and developed a secure financial login app using Flutter (Android & iOS) with integrated biometric authentication (Face ID, Touch ID), reducing login failures by 45%.",
       "Applied Clean Architecture with BLoC and GetIt, improving code maintainability by 60%.",
     ],
@@ -35,7 +34,6 @@ const experiences = [
       "Utilized Flutter and Dart to develop MyThings — an offline- and online-capable productivity app published on both the App Store and Google Play.",
       "Enhanced user security by implementing real-time device monitoring and remote logout features, reducing unauthorized access incidents by 70%.",
       "Implemented an AI-powered auto-suggestion system in the Inbox feature to categorize and store incoming documents, cutting manual sorting time by 60%.",
-      "Collaborated with cross-functional teams to deliver project milestones ahead of schedule, earning recognition and performance rewards.",
       "Tech Stack: Flutter, Firebase, Hive, Neo4j, GetX.",
     ],
   },
@@ -89,8 +87,8 @@ const WorkExperience = () => {
                         : "md:ml-auto md:pl-12 md:mr-0 md:text-left md:translate-x-[40px]"
                     }`}
                 >
-                  <div className="flex items-center justify-between gap-2">
-                    <h3 className="text-2xl font-semibold text-transparent bg-clip-text bg-gradient-to-r from-purple-400 to-cyan-400">
+                  <div className="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-2">
+                    <h3 className="text-lg sm:text-2xl font-semibold text-transparent bg-clip-text bg-gradient-to-r from-purple-400 to-cyan-400 break-words">
                       {exp.title}
                     </h3>
                     <div className="flex items-center gap-2 text-gray-400 text-sm whitespace-nowrap">
@@ -102,9 +100,11 @@ const WorkExperience = () => {
                   <p className="text-blue-400 font-medium mt-1">
                     {exp.company}
                   </p>
-                  <p className="text-gray-300 mt-3">{exp.description}</p>
+                  <p className="text-gray-300 mt-3 text-start">
+                    {exp.description}
+                  </p>
 
-                  <ul className="list-none mt-4 space-y-2 text-gray-400 text-sm">
+                  <ul className="list-none mt-4 space-y-2 text-gray-400 text-sm text-start">
                     {exp.points.map((point, i) => (
                       <li key={i} className="flex gap-2">
                         <span className="text-cyan-400 mt-1">▹</span>

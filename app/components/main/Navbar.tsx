@@ -36,13 +36,6 @@ const Navbar = () => {
             >
               Projects
             </a>
-            {/* ✅ Added Contact link */}
-            <a
-              href="#contact"
-              className="cursor-pointer hover:text-purple-400 transition-colors"
-            >
-              Contact
-            </a>
           </div>
         </div>
 

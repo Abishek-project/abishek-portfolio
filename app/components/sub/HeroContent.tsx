@@ -20,7 +20,7 @@ const HeroContent = () => {
       <div className="h-full w-full flex flex-col gap=5 justify-center m-auto text-start">
         <motion.div
           variants={slideInFromTop}
-          className="Welcome-box  py-[8px] px-[9px] border border-[#7042f88b] opacity-[0.9]"
+          className="Welcome-box py-[8px] px-[9px] border border-[#7042f88b] opacity-[0.9] flex items-center justify-center md:justify-start mx-auto md:mx-0"
         >
           <SparklesIcon className="text-[#b49bff] mr-[10px] h-5 w-5" />
           <h1 className="Welcome-text text-[13px]">
@@ -37,18 +37,19 @@ const HeroContent = () => {
             Abishek J{" "}
           </span>
         </motion.div>
-
         <motion.p
           variants={slideInFromLeft(0.8)}
-          className="text-lg text-gray-400 my-5 max-w-[600px]"
+          className="text-base sm:text-lg text-gray-400 my-4 sm:my-6 max-w-[600px] leading-relaxed"
         >
-          Hi! I&apos;m a Flutter Developer with 3.5 years of experience in
-          building beautiful, high-performance mobile apps, along with
-          full-stack development expertise.
-          <br />
-          <br />
-          Explore my portfolio to see how I bring ideas to life through code!
+          {/* eslint-disable-next-line react/no-unescaped-entities */}
+          Hi! I’m a Flutter Developer with 3.5 years of experience building
+          beautiful, high-performance mobile apps, complemented by full-stack
+          development expertise.
+          <span className="block mt-4">
+            Explore my portfolio to see how I bring ideas to life through code!
+          </span>
         </motion.p>
+
         <motion.a
           variants={slideInFromLeft(1)}
           className="py-2 button-primary text-center text-white cursor-pointer rounded-lg max-w-[200px]"
