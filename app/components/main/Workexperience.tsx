@@ -18,6 +18,7 @@ const experiences = [
       "Developing secure, high-performance fintech and enterprise apps using Flutter for mobile and desktop.",
     points: [
       "Developed a fintech desktop application for a banking client using Flutter, improving delivery speed by 40%.",
+      "Fixed a critical security leak by replacing default input fields with encrypted secure fields, preventing password exposure in Windows memory dumps and eliminating 100% plaintext risk.",
       "Enabled real-time multi-device activation via WebSocket, cutting user setup time by 50%.",
       "Designed and developed a secure financial login app using Flutter (Android & iOS) with integrated biometric authentication (Face ID, Touch ID), reducing login failures by 45%.",
       "Applied Clean Architecture with BLoC and GetIt, improving code maintainability by 60%.",
