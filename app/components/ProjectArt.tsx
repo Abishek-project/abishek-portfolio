@@ -45,6 +45,191 @@ const Sparkles = ({ points }: { points: [number, number, number][] }) => (
   </g>
 );
 
+/* ─────────────────────────── MLCC (Dubai Metro fuel delivery) ─────────────────────────── */
+
+const ML = { cloudX: 396, cloudY: 132, queueX: 304, queueY0: 262, gap: 50 };
+const mlQueue = ["#1040", "#1041", "#1042"];
+
+const MlccArt = ({ accent }: { accent: string }) => (
+  <Frame id="ml" accent={accent}>
+    {/* Metro line with a train gliding past */}
+    <g>
+      <path d="M0 64 H800" stroke="#fff" strokeOpacity="0.12" strokeWidth="2" />
+      <path d="M0 70 H800" stroke="#fff" strokeOpacity="0.06" strokeWidth="1" strokeDasharray="2 10" />
+      <g className="ml-train">
+        <rect x="0" y="40" width="150" height="22" rx="11" fill="#e5e7eb" />
+        <rect x="0" y="40" width="150" height="7" rx="3.5" fill="#3b82f6" />
+        {[18, 46, 74, 102].map((x) => (
+          <rect key={x} x={x} y="50" width="20" height="7" rx="2" fill="#0e0d13" fillOpacity="0.75" />
+        ))}
+        <path d="M150 40 h8 a11 11 0 0 1 0 22 h-8 Z" fill="#cbd5e1" />
+      </g>
+      <text x="24" y="98" fontSize="10" letterSpacing="2" fill="#fff" fillOpacity="0.4" style={{ fontFamily: "var(--font-mono)" }}>
+        DUBAI METRO BLUE LINE · TUNNEL SITE 04
+      </text>
+    </g>
+
+    {/* Field phone: delivery capture */}
+    <g>
+      <rect x="40" y="118" width="196" height="360" rx="30" fill="#16151d" stroke="#fff" strokeOpacity="0.14" strokeWidth="2" />
+      <rect x="51" y="129" width="174" height="338" rx="21" fill="#0f0f15" />
+      <text x="66" y="160" fontSize="10" letterSpacing="1.5" fill={accent} style={{ fontFamily: "var(--font-mono)" }}>
+        DELIVERY #1042
+      </text>
+      {/* QR viewfinder */}
+      <g transform="translate(66 172)">
+        <rect width="144" height="92" rx="12" fill="#fff" fillOpacity="0.04" />
+        {[
+          "M10 24 V10 H24",
+          "M120 10 H134 V24",
+          "M10 68 V82 H24",
+          "M120 82 H134 V68",
+        ].map((d) => (
+          <path key={d} d={d} stroke={accent} strokeWidth="3" fill="none" strokeLinecap="round" />
+        ))}
+        {/* excavator glyph */}
+        <g transform="translate(46 26)" fill="#fbbf24">
+          <rect x="0" y="22" width="36" height="14" rx="3" />
+          <rect x="6" y="10" width="16" height="14" rx="2" />
+          <path d="M22 14 L44 4 L48 8 L28 20 Z" />
+          <path d="M44 4 L52 18 L46 20 Z" />
+          <circle cx="8" cy="38" r="4" fill="#0e0d13" stroke="#fbbf24" strokeWidth="2" />
+          <circle cx="28" cy="38" r="4" fill="#0e0d13" stroke="#fbbf24" strokeWidth="2" />
+        </g>
+        <rect className="ml-scan" x="10" y="12" width="124" height="2.5" fill={accent} />
+      </g>
+      <text x="66" y="284" fontSize="11" fontWeight="600" fill="#efece6" style={{ fontFamily: "var(--font-sans)" }}>
+        Asset EX-207 · Excavator
+      </text>
+      {/* OCR meter */}
+      <g transform="translate(66 296)">
+        <rect width="144" height="38" rx="9" fill="#fff" fillOpacity="0.05" />
+        <text x="10" y="15" fontSize="8.5" fill="#fff" fillOpacity="0.45" letterSpacing="1" style={{ fontFamily: "var(--font-mono)" }}>
+          HOUR METER · OCR
+        </text>
+        <rect className="ml-ocr" x="8" y="19" width="78" height="15" rx="3" fill="none" stroke={accent} strokeWidth="1.5" />
+        <text x="12" y="31" fontSize="12" fill="#efece6" style={{ fontFamily: "var(--font-mono)" }}>
+          1,248.6 h
+        </text>
+      </g>
+      <g transform="translate(66 342)">
+        <rect width="144" height="56" rx="9" fill={accent} fillOpacity="0.12" />
+        <text x="10" y="18" fontSize="8.5" fill="#fff" fillOpacity="0.5" letterSpacing="1" style={{ fontFamily: "var(--font-mono)" }}>
+          TANKER 3,410 → 3,730
+        </text>
+        <text x="10" y="44" fontSize="22" fontWeight="700" fill="#efece6" style={{ fontFamily: "var(--font-display)" }}>
+          320 L
+        </text>
+      </g>
+      {/* geo-tag stamp */}
+      <g transform="translate(66 408)">
+        <path d="M8 2a6 6 0 0 1 6 6c0 5-6 11-6 11S2 13 2 8a6 6 0 0 1 6-6Z" fill="#f87171" />
+        <circle cx="8" cy="8" r="2.2" fill="#0e0d13" />
+        <text x="22" y="10" fontSize="9" fill="#fff" fillOpacity="0.6" style={{ fontFamily: "var(--font-mono)" }}>
+          25.19°N 55.38°E
+        </text>
+        <text x="22" y="22" fontSize="9" fill="#fff" fillOpacity="0.4" style={{ fontFamily: "var(--font-mono)" }}>
+          09:42 · photo stamped
+        </text>
+      </g>
+    </g>
+
+    {/* Connectivity + offline queue */}
+    <g>
+      {/* cloud */}
+      <g className="ml-cloud">
+        <path
+          d={`M${ML.cloudX - 40} ${ML.cloudY + 16}a16 16 0 0 1 4-31a22 22 0 0 1 41-6a17 17 0 0 1 33 9a14 14 0 0 1-2 28Z`}
+          fill="#fff"
+          fillOpacity="0.1"
+          stroke="#fff"
+          strokeOpacity="0.25"
+        />
+        <path className="ml-cloud-off" d={`M${ML.cloudX - 22} ${ML.cloudY - 22} L${ML.cloudX + 22} ${ML.cloudY + 14}`} stroke="#f59e0b" strokeWidth="3" strokeLinecap="round" />
+      </g>
+      <g style={{ fontFamily: "var(--font-mono)" }}>
+        <g className="ml-offline">
+          <rect x="306" y="176" width="180" height="26" rx="13" fill="#f59e0b" fillOpacity="0.15" />
+          <circle cx="324" cy="189" r="4" fill="#f59e0b" />
+          <text x="336" y="193" fontSize="10" letterSpacing="1" fill="#fcd34d">OFFLINE · IN TUNNEL</text>
+        </g>
+        <g className="ml-online" opacity="0">
+          <rect x="306" y="176" width="180" height="26" rx="13" fill={accent} fillOpacity="0.15" />
+          <circle cx="324" cy="189" r="4" fill={accent} />
+          <text x="336" y="193" fontSize="10" letterSpacing="1" fill="#d9f99d">ONLINE · SYNCING</text>
+        </g>
+      </g>
+      <text x="306" y="238" fontSize="9" letterSpacing="2" fill="#fff" fillOpacity="0.4" style={{ fontFamily: "var(--font-mono)" }}>
+        LOCAL QUEUE (ENCRYPTED)
+      </text>
+      {mlQueue.map((id, i) => (
+        <g key={id} className="ml-q" opacity="0">
+          <rect x={ML.queueX} y={ML.queueY0 + i * ML.gap - 18} width="184" height="40" rx="10" fill="#16151d" stroke="#fff" strokeOpacity="0.1" />
+          <circle cx={ML.queueX + 20} cy={ML.queueY0 + i * ML.gap + 2} r="9" fill="#fff" fillOpacity="0.08" />
+          <text x={ML.queueX + 20} y={ML.queueY0 + i * ML.gap + 6} textAnchor="middle" fontSize="10" fill="#efece6" style={{ fontFamily: "var(--font-mono)" }}>
+            {i + 1}
+          </text>
+          <text x={ML.queueX + 38} y={ML.queueY0 + i * ML.gap + 6} fontSize="12" fill="#efece6" style={{ fontFamily: "var(--font-mono)" }}>
+            {id} · {[280, 150, 320][i]} L
+          </text>
+          <text x={ML.queueX + 172} y={ML.queueY0 + i * ML.gap + 6} textAnchor="end" fontSize="8.5" fill="#fcd34d" style={{ fontFamily: "var(--font-mono)" }}>
+            QUEUED
+          </text>
+        </g>
+      ))}
+      <text className="ml-synced" x="396" y="420" textAnchor="middle" fontSize="11" letterSpacing="2" fill="#d9f99d" opacity="0" style={{ fontFamily: "var(--font-mono)" }}>
+        ✓ SYNCED IN ORDER · 3/3
+      </text>
+    </g>
+
+    {/* Operator approval */}
+    <g transform="translate(540 150)">
+      <rect width="220" height="250" rx="20" fill="#16151d" stroke="#fff" strokeOpacity="0.1" />
+      <text x="20" y="32" fontSize="9" letterSpacing="2" fill="#fff" fillOpacity="0.45" style={{ fontFamily: "var(--font-mono)" }}>
+        OPERATOR · SIGN-OFF
+      </text>
+      <g className="ml-req">
+        <text x="20" y="66" fontSize="14" fontWeight="600" fill="#efece6" style={{ fontFamily: "var(--font-sans)" }}>
+          Approve delivery #1042?
+        </text>
+        <text x="20" y="104" fontSize="30" fontWeight="700" fill="#efece6" style={{ fontFamily: "var(--font-display)" }}>
+          320 L
+        </text>
+        <text x="20" y="124" fontSize="10" fill="#fff" fillOpacity="0.5" style={{ fontFamily: "var(--font-sans)" }}>
+          EX-207 · Tanker TK-12 · 09:42
+        </text>
+        <rect x="20" y="140" width="56" height="40" rx="8" fill="#334155" />
+        <path d="M30 170 l10-12 8 8 6-8 12 12Z" fill="#94a3b8" />
+        <text x="86" y="158" fontSize="9" fill="#fff" fillOpacity="0.5" style={{ fontFamily: "var(--font-mono)" }}>
+          Geo-tagged
+        </text>
+        <text x="86" y="172" fontSize="9" fill="#fff" fillOpacity="0.5" style={{ fontFamily: "var(--font-mono)" }}>
+          photo ✓
+        </text>
+        <rect x="20" y="196" width="84" height="36" rx="18" fill="none" stroke="#fff" strokeOpacity="0.25" />
+        <text x="62" y="219" textAnchor="middle" fontSize="12" fill="#efece6" style={{ fontFamily: "var(--font-sans)" }}>
+          Reject
+        </text>
+        <g className="ml-approve">
+          <rect x="114" y="196" width="86" height="36" rx="18" fill={accent} />
+          <text x="157" y="219" textAnchor="middle" fontSize="12" fontWeight="700" fill="#0e0d13" style={{ fontFamily: "var(--font-sans)" }}>
+            Approve
+          </text>
+        </g>
+      </g>
+      <g className="ml-done" opacity="0">
+        <circle cx="110" cy="118" r="34" fill={accent} />
+        <path d="M95 118l10 10 20-22" stroke="#0e0d13" strokeWidth="5" fill="none" strokeLinecap="round" strokeLinejoin="round" />
+        <text x="110" y="184" textAnchor="middle" fontSize="14" fontWeight="600" fill="#efece6" style={{ fontFamily: "var(--font-sans)" }}>
+          Approved · 320 L
+        </text>
+      </g>
+    </g>
+
+    <Sparkles points={[[520, 120, 5], [770, 450, 6], [270, 470, 4]]} />
+  </Frame>
+);
+
 /* ─────────────────────────── Migros Bank Connect ─────────────────────────── */
 
 // Deterministic QR-like pattern (21×21 with finder squares) for the pairing card
@@ -997,7 +1182,7 @@ const NovaArt = ({ accent }: { accent: string }) => (
 
 /* ─────────────────────────── Animation ─────────────────────────── */
 
-const scenes = { migros: MigrosArt, dvag: DvagArt, mythings: MyThingsArt, sparkzen: SparkZenArt, eazybuy: EazyBuyArt, groupsync: GroupSyncArt, nova: NovaArt };
+const scenes = { mlcc: MlccArt, migros: MigrosArt, dvag: DvagArt, mythings: MyThingsArt, sparkzen: SparkZenArt, eazybuy: EazyBuyArt, groupsync: GroupSyncArt, nova: NovaArt };
 export type ArtKey = keyof typeof scenes;
 
 const ProjectArt = ({ art, accent, title }: { art: ArtKey; accent: string; title: string }) => {
@@ -1018,6 +1203,39 @@ const ProjectArt = ({ art, accent, title }: { art: ArtKey; accent: string; title
         stagger: { each: 0.35, repeat: -1, yoyo: true },
         ease: "sine.inOut",
       });
+
+      // MLCC: queue offline in the tunnel, reconnect, sync in order, operator approves
+      if (root.current?.querySelector(".ml-q")) {
+        gsap.fromTo(".ml-train", { x: -180 }, { x: 820, duration: 7, repeat: -1, ease: "none" });
+        gsap.fromTo(".ml-scan", { y: 0 }, { y: 66, duration: 1.4, repeat: -1, yoyo: true, ease: "sine.inOut" });
+        gsap.to(".ml-ocr", { strokeOpacity: 0.2, duration: 0.7, repeat: -1, yoyo: true });
+        const queue = gsap.utils.toArray<SVGGElement>(".ml-q");
+        const tl = gsap.timeline({ repeat: -1, repeatDelay: 0.8 });
+        tl.set(queue, { x: 0, y: 0, scale: 1, opacity: 0 })
+          .set([".ml-offline", ".ml-cloud-off", ".ml-req"], { opacity: 1 })
+          .set([".ml-online", ".ml-synced", ".ml-done"], { opacity: 0 })
+          .to(queue, { opacity: 1, duration: 0.4, stagger: 0.5 })
+          .to(".ml-offline", { opacity: 0, duration: 0.3, delay: 0.8 })
+          .to(".ml-online", { opacity: 1, duration: 0.3 }, "<")
+          .to(".ml-cloud-off", { opacity: 0, duration: 0.3 }, "<");
+        queue.forEach((q, i) =>
+          tl.to(q, {
+            x: ML.cloudX - ML.queueX - 92,
+            y: ML.cloudY - (ML.queueY0 + i * ML.gap),
+            scale: 0.3,
+            opacity: 0,
+            transformOrigin: "50% 50%",
+            duration: 0.6,
+            ease: "power2.in",
+          }, i === 0 ? "+=0.2" : "-=0.25")
+        );
+        tl.to(".ml-cloud", { scale: 1.08, transformOrigin: "50% 50%", duration: 0.15, yoyo: true, repeat: 1 })
+          .to(".ml-synced", { opacity: 1, duration: 0.3 }, "<")
+          .to(".ml-approve", { scale: 0.92, transformOrigin: "50% 50%", duration: 0.12, yoyo: true, repeat: 1, delay: 0.4 })
+          .to(".ml-req", { opacity: 0, duration: 0.3 })
+          .fromTo(".ml-done", { opacity: 0, scale: 0.8 }, { opacity: 1, scale: 1, transformOrigin: "50% 50%", duration: 0.45, ease: "back.out(2.5)" })
+          .to({}, { duration: 1.6 });
+      }
 
       // DVAG: portal asks the phone, fingerprint scan confirms, portal unlocks
       if (root.current?.querySelector(".dv-fp")) {

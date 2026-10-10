@@ -110,7 +110,7 @@ export type Project = {
   /** Who it was built for/with — shown on client and company work */
   company?: string;
   accent: string;
-  art: "migros" | "dvag" | "mythings" | "sparkzen" | "eazybuy" | "groupsync" | "nova";
+  art: "mlcc" | "migros" | "dvag" | "mythings" | "sparkzen" | "eazybuy" | "groupsync" | "nova";
   tech: string[];
   description: string;
   /** Your contribution and results; listed as bullet points */
@@ -121,6 +121,27 @@ export type Project = {
 };
 
 export const Projects: Project[] = [
+  {
+    title: "MLCC",
+    subtitle: "Dubai Metro Blue Line · fuel delivery",
+    kind: "Client",
+    company: "Grootan Technologies, for the MAPA–Limak–CRRC Consortium (Dubai)",
+    accent: "#84cc16",
+    art: "mlcc",
+    tech: ["Flutter (Android & iOS)", "BLoC", "Encrypted Drift/SQLite", "WorkManager", "Firebase Cloud Messaging", "OpenCV", "Sentry"],
+    description:
+      "The field app of MLCC's Fuel Management System — MLCC is the consortium building Dubai's Metro Blue Line. Fuel attenders scan each machine and tanker, capture meter readings and geo-tagged photo proof, and every litre is approved, even deep in tunnels with no signal. Deliveries then flow into a web dashboard where engineers, warehouse teams and admins reconcile fuel by job code, tanker and site.",
+    highlights: [
+      "Offline-first delivery on encrypted Drift/SQLite: a local queue with device-generated IDs keeps drivers working in tunnels and remote yards, then syncs safely and in order on reconnect",
+      "Three-state network model (online / offline / online-fallback) with a health check that tells real outages apart from captive portals and dead uplinks",
+      "Background sync with WorkManager in a separate isolate, triggered by silent FCM messages, with exponential backoff",
+      "Secure onboarding: phone + OTP, device binding, 6-digit PIN, biometrics, and a deregister flow that wipes all local data and photos",
+      "Emirates ID scanning, QR asset and tanker capture, OCR meter readings and geo-tagged photo evidence",
+      "Push notifications, in-app OTA updates for app versions activated from the admin dashboard, Sentry monitoring and dev/prod flavors",
+    ],
+    links: [],
+    note: "Internal app for MLCC field teams — shipped via in-app updates",
+  },
   {
     title: "Migros Bank",
     subtitle: "Swiss bank · desktop authenticator",
