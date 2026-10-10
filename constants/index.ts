@@ -1,210 +1,139 @@
-export const Skill_data = [
-  {
-    skill_name: "Html 5",
-    Image: "/html.png",
-    width: 80,
-    height: 80,
-  },
-  {
-    skill_name: "Css",
-    Image: "/css.png",
-    width: 80,
-    height: 80,
-  },
-  {
-    skill_name: "Java Script",
-    Image: "/js.png",
-    width: 65,
-    height: 65,
-  },
-  {
-    skill_name: "Tailwind Css",
-    Image: "/tailwind.png",
-    width: 80,
-    height: 80,
-  },
-  {
-    skill_name: "React",
-    Image: "/react.png",
-    width: 80,
-    height: 80,
-  },
-  {
-    skill_name: "Type Script",
-    Image: "/ts.png",
-    width: 80,
-    height: 80,
-  },
-  {
-    skill_name: "Next js 13",
-    Image: "/next.png",
-    width: 80,
-    height: 80,
-  },
-  {
-    skill_name: "Flutter",
-    Image: "/next.png",
-    width: 80,
-    height: 80,
-  },
-  {
-    skill_name: "Dart",
-    Image: "/next.png",
-    width: 80,
-    height: 80,
-  },
-  // {
-  //   skill_name: "Redux",
-  //   Image: "/redux.png",
-  //   width: 80,
-  //   height: 80,
-  // },
-  // {
-  //   skill_name: "React Query",
-  //   Image: "/reactquery.png",
-  //   width: 80,
-  //   height: 80,
-  // },
-  // {
-  //   skill_name: "Framer Motion",
-  //   Image: "/framer.png",
-  //   width: 80,
-  //   height: 80,
-  // },
-  // {
-  //   skill_name: "Stripe Payment",
-  //   Image: "/stripe.webp",
-  //   width: 80,
-  //   height: 80,
-  // },
+export const Profile = {
+  name: "Abishek J",
+  firstName: "Abishek",
+  roles: ["Flutter Developer", "Full-Stack Engineer", "Mobile & Desktop Apps"],
+  location: "Chennai, India",
+  timeZone: "Asia/Kolkata",
+  email: "abishekabi992@gmail.com",
+  phone: "+91 7339174247",
+  currentCompany: "Grootan Technologies",
+  intro:
+    "I design and build beautiful, high-performance apps for mobile, desktop and the web — and I'm comfortable shipping the backend that powers them.",
+  about:
+    "I'm a Flutter developer with 4+ years of experience turning ideas into polished, secure products. From fintech desktop apps for banks to AI-powered assistants, I care about clean architecture, smooth interactions and software that people genuinely enjoy using.",
+};
+
+export const Stats = [
+  { value: 4, suffix: "+", label: "Years building production apps" },
+  { value: 70, suffix: "%", label: "Fewer unauthorized access incidents" },
+  { value: 50, suffix: "%", label: "Faster multi-device setup" },
+  { value: 45, suffix: "%", label: "Fewer login failures with biometrics" },
 ];
 
 export const Socials = [
-  {
-    name: "LinkedIn",
-    src: "/linkedin.svg",
-    url: "https://www.linkedin.com/in/abishek-j-dev",
-  },
-  {
-    name: "Github",
-    src: "/github.svg",
-    url: "https://github.com/Abishek-project",
-  },
-  // {
-  //   name: "Resume",
-  //   src: "/resume.svg",
-  //   url: "https://drive.google.com/file/d/1n8AW6Fq4Or8Iwpw260v76X_KCagwnO-x/view?usp=drive_link",
-  // },
+  { name: "LinkedIn", url: "https://www.linkedin.com/in/abishek-j-dev" },
+  { name: "GitHub", url: "https://github.com/Abishek-project" },
 ];
 
-export const Frontend_skill = [
+export const NavLinks = [
+  { label: "About", href: "#about" },
+  { label: "Skills", href: "#skills" },
+  { label: "Experience", href: "#experience" },
+  { label: "Projects", href: "#projects" },
+  { label: "Contact", href: "#contact" },
+];
+
+export type Skill = { name: string; image: string };
+
+export const SkillGroups: { title: string; skills: Skill[] }[] = [
   {
-    skill_name: "Flutter",
-    Image: "/flutter.png",
-    width: 70,
-    height: 70,
+    title: "Mobile & Frontend",
+    skills: [
+      { name: "Flutter", image: "/flutter.png" },
+      { name: "Dart", image: "/dart2.png" },
+      { name: "React", image: "/react.png" },
+      { name: "TypeScript", image: "/ts.png" },
+      { name: "JavaScript", image: "/js.png" },
+      { name: "Tailwind CSS", image: "/tailwind.png" },
+      { name: "HTML5", image: "/html.png" },
+      { name: "CSS", image: "/css.png" },
+    ],
   },
   {
-    skill_name: "Dart",
-    Image: "/dart2.png",
-    width: 70,
-    height: 70,
+    title: "Backend & Cloud",
+    skills: [
+      { name: "Node.js", image: "/node-js.png" },
+      { name: "Express", image: "/express.png" },
+      { name: "MongoDB", image: "/mongodb.png" },
+      { name: "Firebase", image: "/Firebase.png" },
+      { name: "AWS", image: "/aws.png" },
+      { name: "Postman", image: "/postman.png" },
+    ],
   },
   {
-    skill_name: "Html 5",
-    Image: "/html.png",
-    width: 80,
-    height: 80,
-  },
-  {
-    skill_name: "Css",
-    Image: "/css.png",
-    width: 95,
-    height: 95,
-  },
-  {
-    skill_name: "Java Script",
-    Image: "/js.png",
-    width: 65,
-    height: 65,
-  },
-  {
-    skill_name: "Tailwind Css",
-    Image: "/tailwind.png",
-    width: 80,
-    height: 80,
-  },
-  {
-    skill_name: "React",
-    Image: "/react.png",
-    width: 80,
-    height: 80,
+    title: "Languages & Tools",
+    skills: [
+      { name: "Java", image: "/java.png" },
+      { name: "Git", image: "/git.png" },
+      { name: "GitHub", image: "/github.png" },
+      { name: "GitLab", image: "/gitlab.png" },
+    ],
   },
 ];
 
-export const Backend_skill = [
+export const Experiences = [
   {
-    skill_name: "Mongo db",
-    Image: "/mongodb.png",
-    width: 40,
-    height: 40,
+    title: "Software Engineer",
+    company: "Grootan Technologies",
+    duration: "Feb 2024 — Present",
+    description:
+      "Developing secure, high-performance fintech and enterprise apps using Flutter for mobile and desktop.",
+    points: [
+      "Built a fintech desktop application for a banking client in Flutter, improving delivery speed by 40%.",
+      "Fixed a critical security leak by replacing default inputs with encrypted secure fields — eliminating plaintext password exposure in Windows memory dumps.",
+      "Enabled real-time multi-device activation over WebSocket, cutting user setup time by 50%.",
+      "Shipped a secure financial login app (Android & iOS) with Face ID / Touch ID, reducing login failures by 45%.",
+      "Applied Clean Architecture with BLoC and GetIt, improving maintainability by 60%.",
+    ],
   },
   {
-    skill_name: "Express js",
-    Image: "/express.png",
-    width: 80,
-    height: 80,
-  },
-  {
-    skill_name: "Node js",
-    Image: "/node-js.png",
-    width: 80,
-    height: 80,
-  },
-  {
-    skill_name: "Fire base",
-    Image: "/Firebase.png",
-    width: 55,
-    height: 55,
-  },
-  {
-    skill_name: "Postman",
-    Image: "/postman.png",
-    width: 70,
-    height: 70,
-  },
-  {
-    skill_name: "AWS",
-    Image: "/aws.png",
-    width: 100,
-    height: 100,
+    title: "Flutter Developer",
+    company: "Agile Cyber Solutions",
+    duration: "Jul 2022 — Feb 2024",
+    description:
+      "Built cross-platform mobile apps focused on performance, security and AI-powered user experiences.",
+    points: [
+      "Developed MyThings — an offline- and online-capable productivity app published on the App Store and Google Play.",
+      "Added real-time device monitoring and remote logout, reducing unauthorized access incidents by 70%.",
+      "Implemented AI-powered auto-suggestions in the Inbox to categorize incoming documents, cutting manual sorting time by 60%.",
+    ],
+    stack: "Flutter · Firebase · Hive · Neo4j · GetX",
   },
 ];
 
-export const Other_skill = [
+export const Projects = [
   {
-    skill_name: "Java",
-    Image: "/java.png",
-    width: 85,
-    height: 85,
-  },
-
-  {
-    skill_name: "Git",
-    Image: "/git.png",
-    width: 70,
-    height: 70,
+    title: "EazyBuy",
+    subtitle: "Smart ecommerce platform",
+    accent: "#8b7cf6",
+    art: "eazybuy" as const,
+    tech: ["Flutter", "Node.js", "MongoDB", "REST APIs"],
+    description:
+      "A full-featured ecommerce app for customers and admins — smart search, categorized listings, cart, order tracking, secure payments and real-time order updates, all in one ecosystem.",
+    githubUrl: "https://github.com/Abishek-project/E-commerce-App-with-Backend",
+    demoUrl: "https://abishek-project.github.io/E-commerce-App-with-Backend/",
   },
   {
-    skill_name: "Github",
-    Image: "/github.png",
-    width: 90,
-    height: 90,
+    title: "GroupSync",
+    subtitle: "Video conferencing app",
+    accent: "#3b82f6",
+    art: "groupsync" as const,
+    tech: ["Flutter", "Firebase", "Agora RTC"],
+    description:
+      "High-quality virtual meetings for teams and individuals — real-time video and audio, secure authentication, meeting history and a friction-free interface.",
+    githubUrl: "https://github.com/Abishek-project/Video-conferencing-app/",
+    demoUrl: "https://appetize.io/app/b_h2brbjmpecfr5d2d7dnqeen634",
   },
   {
-    skill_name: "Gitlab",
-    Image: "/gitlab.png",
-    width: 70,
-    height: 70,
+    title: "Nova AI",
+    subtitle: "Personal voice assistant",
+    accent: "#c026d3",
+    art: "nova" as const,
+    tech: ["Flutter", "Gemini 2.5 Flash", "Firebase"],
+    description:
+      "A Jarvis-style assistant that listens, talks and performs voice-triggered actions — with personalized responses and a customizable personality.",
+    githubUrl: "https://github.com/Abishek-project/personal-ai-assistant",
+    demoUrl:
+      "https://www.linkedin.com/posts/abishek-j-dev_flutter-ai-voiceassistant-activity-7386674615525416960-cBSy",
   },
 ];

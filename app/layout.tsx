@@ -1,15 +1,27 @@
 import type { Metadata } from "next";
-import { Inter } from "next/font/google";
+import { Inter, JetBrains_Mono, Syne } from "next/font/google";
 import "./globals.css";
-import StarsCanvas from "./components/main/StarBackground";
-import Navbar from "./components/main/Navbar";
-import Footer from "./components/main/Footer";
+import SmoothScroll from "./components/SmoothScroll";
+import Preloader from "./components/Preloader";
+import Cursor from "./components/Cursor";
+import Navbar from "./components/Navbar";
 
-const inter = Inter({ subsets: ["latin"] });
+const display = Syne({
+  subsets: ["latin"],
+  weight: ["600", "700", "800"],
+  variable: "--font-display",
+});
+const sans = Inter({ subsets: ["latin"], variable: "--font-sans" });
+const mono = JetBrains_Mono({
+  subsets: ["latin"],
+  weight: ["400", "500"],
+  variable: "--font-mono",
+});
 
 export const metadata: Metadata = {
-  title: "Abishek Portfolio",
-  description: "Hi! Welcome to my portfolio",
+  title: "Abishek J — Flutter & Full-Stack Developer",
+  description:
+    "Portfolio of Abishek J, a Flutter and full-stack developer based in Chennai building high-performance mobile, desktop and web apps.",
 };
 
 export default function RootLayout({
@@ -18,14 +30,16 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
   return (
-    <html lang="en">
+    <html lang="en" className="is-loading">
       <body
-        className={`${inter.className} bg-[#030014] overflow-y-scroll overflow-x-hidden`}
+        className={`${display.variable} ${sans.variable} ${mono.variable} font-sans bg-ink text-paper antialiased`}
       >
-        <StarsCanvas />
+        <SmoothScroll />
+        <Preloader />
+        <Cursor />
         <Navbar />
         {children}
-        <Footer />
+        <div className="grain" aria-hidden />
       </body>
     </html>
   );
