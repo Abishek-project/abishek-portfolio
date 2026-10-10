@@ -101,39 +101,150 @@ export const Experiences = [
   },
 ];
 
-export const Projects = [
+export type ProjectLink = { label: string; url: string };
+
+export type Project = {
+  title: string;
+  subtitle: string;
+  kind: "Client" | "Product" | "Personal";
+  /** Who it was built for/with — shown on client and company work */
+  company?: string;
+  accent: string;
+  art: "migros" | "dvag" | "mythings" | "sparkzen" | "eazybuy" | "groupsync" | "nova";
+  tech: string[];
+  description: string;
+  /** Your contribution and results; listed as bullet points */
+  highlights?: string[];
+  links: ProjectLink[];
+  /** Shown instead of links when the app isn't public */
+  note?: string;
+};
+
+export const Projects: Project[] = [
+  {
+    title: "Migros Bank",
+    subtitle: "Swiss bank · desktop authenticator",
+    kind: "Client",
+    company: "Grootan Technologies, for Migros Bank (Switzerland)",
+    accent: "#ff6a13",
+    art: "migros",
+    tech: ["Flutter Desktop", "BLoC", "Clean Architecture", "OIDC + PKCE", "GetIt", "TeamCity"],
+    description:
+      "Migros Bank Connect is the Windows & macOS app that customers of Migros Bank, the Swiss retail bank, use to approve every e-banking login and payment. It turns a computer into a trusted device — so a stolen password alone can't get into the account.",
+    highlights: [
+      "Real-time login and payment approval with countdown, timeouts and recovery when the network drops",
+      "Self-service device activation with QR codes and one-time codes, backed by a dedicated QR package",
+      "Security hardening after the bank's penetration test, plus PKCE in the login and activation flows",
+      "Windows & macOS release builds on TeamCity and GitLab CI, and the upgrade to Flutter 3.27",
+    ],
+    links: [],
+    note: "Enterprise app for Migros Bank customers — not publicly listed",
+  },
+  {
+    title: "DVAG Login",
+    subtitle: "Advisor sign-in · mobile security",
+    kind: "Client",
+    company: "Grootan Technologies, for Deutsche Vermögensberatung (Germany)",
+    accent: "#0ea5e9",
+    art: "dvag",
+    tech: ["Flutter (Android & iOS)", "BLoC", "Clean Architecture", "Biometrics", "Push confirmations", "TeamCity"],
+    description:
+      "The Android & iOS app that Deutsche Vermögensberatung (DVAG), Germany's largest financial advisory firm, gives its ~37,000 financial advisors to sign in to DVAG's systems. Every sign-in is confirmed on the advisor's phone, so a stolen password alone can't expose client data.",
+    highlights: [
+      "Fingerprint and Face ID login, including the permission-denied and admin-user cases",
+      "Reliable sign-in confirmations: fixed transaction timeouts and handled lost network during confirmation and device activation",
+      "Built on the same shared Flutter codebase as the Migros Bank app, upgraded to Flutter 3.27 with strict lint rules",
+      "Android & iOS release builds on TeamCity",
+    ],
+    links: [
+      { label: "App Store", url: "https://apps.apple.com/de/app/dvag-login/id1170009769" },
+      { label: "Google Play", url: "https://play.google.com/store/apps/details?id=com.dvag.sesam.pp" },
+    ],
+  },
+  {
+    title: "MyThings",
+    subtitle: "Smart productivity app",
+    kind: "Client",
+    company: "Agile Cyber Solutions",
+    accent: "#10b981",
+    art: "mythings",
+    tech: ["Flutter", "Firebase", "Hive", "Neo4j", "GetX"],
+    description:
+      "A productivity app for organising documents, tasks and important things in one place — it works offline and online, and is published on the App Store and Google Play.",
+    highlights: [
+      "AI auto-suggestions that categorize incoming documents, cutting manual sorting time by 60%",
+      "Real-time device monitoring and remote logout, reducing unauthorized access by 70%",
+      "Offline-first storage with seamless sync when back online",
+    ],
+    links: [
+      { label: "App Store", url: "https://apps.apple.com/app/mythings/id1624851591" },
+      { label: "Google Play", url: "https://play.google.com/store/apps/details?id=com.mythings.app" },
+    ],
+  },
+  {
+    title: "Spark Zen",
+    subtitle: "Student career & wellness app",
+    kind: "Product",
+    company: "Grootan Technologies",
+    accent: "#f59e0b",
+    art: "sparkzen",
+    tech: ["Flutter (Android & iOS)", "BLoC", "auto_route", "Firebase", "JWT + secure storage", "Dev/prod flavors"],
+    description:
+      "Grootan's own app that guides students through their studies and early career — and looks after their well-being along the way.",
+    highlights: [
+      "Career growth: internships, industrial visits, mock interviews, mentorship and code reviews",
+      "Endorsements, goal tracking, points and leaderboards to keep students motivated",
+      "Wellness: journaling with voice notes, mood tracking and guided breathing",
+    ],
+    links: [
+      { label: "App Store", url: "https://apps.apple.com/app/spark-zen/id6740798896" },
+      { label: "Google Play", url: "https://play.google.com/store/apps/details?id=app.sparkzen" },
+    ],
+  },
   {
     title: "EazyBuy",
     subtitle: "Smart ecommerce platform",
+    kind: "Personal",
     accent: "#8b7cf6",
-    art: "eazybuy" as const,
+    art: "eazybuy",
     tech: ["Flutter", "Node.js", "MongoDB", "REST APIs"],
     description:
       "A full-featured ecommerce app for customers and admins — smart search, categorized listings, cart, order tracking, secure payments and real-time order updates, all in one ecosystem.",
-    githubUrl: "https://github.com/Abishek-project/E-commerce-App-with-Backend",
-    demoUrl: "https://abishek-project.github.io/E-commerce-App-with-Backend/",
+    links: [
+      { label: "Google Play", url: "https://play.google.com/store/apps/details?id=com.abishek.eazybuy" },
+      { label: "Source", url: "https://github.com/Abishek-project/E-commerce-App-with-Backend" },
+      { label: "Live demo", url: "https://abishek-project.github.io/E-commerce-App-with-Backend/" },
+    ],
   },
   {
     title: "GroupSync",
     subtitle: "Video conferencing app",
+    kind: "Personal",
     accent: "#3b82f6",
-    art: "groupsync" as const,
+    art: "groupsync",
     tech: ["Flutter", "Firebase", "Agora RTC"],
     description:
       "High-quality virtual meetings for teams and individuals — real-time video and audio, secure authentication, meeting history and a friction-free interface.",
-    githubUrl: "https://github.com/Abishek-project/Video-conferencing-app/",
-    demoUrl: "https://appetize.io/app/b_h2brbjmpecfr5d2d7dnqeen634",
+    links: [
+      { label: "Source", url: "https://github.com/Abishek-project/Video-conferencing-app/" },
+      { label: "Live demo", url: "https://appetize.io/app/b_h2brbjmpecfr5d2d7dnqeen634" },
+    ],
   },
   {
     title: "Nova AI",
     subtitle: "Personal voice assistant",
+    kind: "Personal",
     accent: "#c026d3",
-    art: "nova" as const,
+    art: "nova",
     tech: ["Flutter", "Gemini 2.5 Flash", "Firebase"],
     description:
       "A Jarvis-style assistant that listens, talks and performs voice-triggered actions — with personalized responses and a customizable personality.",
-    githubUrl: "https://github.com/Abishek-project/personal-ai-assistant",
-    demoUrl:
-      "https://www.linkedin.com/posts/abishek-j-dev_flutter-ai-voiceassistant-activity-7386674615525416960-cBSy",
+    links: [
+      { label: "Source", url: "https://github.com/Abishek-project/personal-ai-assistant" },
+      {
+        label: "Demo video",
+        url: "https://www.linkedin.com/posts/abishek-j-dev_flutter-ai-voiceassistant-activity-7386674615525416960-cBSy",
+      },
+    ],
   },
 ];

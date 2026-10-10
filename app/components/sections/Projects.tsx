@@ -31,7 +31,7 @@ const Projects = () => {
       });
 
       gsap.utils.toArray<HTMLElement>(".pj-name").forEach((el) =>
-        SplitText.create(el, { type: "chars", charsClass: "pj-char" })
+        SplitText.create(el, { type: "words,chars", charsClass: "pj-char" })
       );
     },
     { scope: root }
@@ -164,7 +164,7 @@ const Projects = () => {
 
                   <span className="col-span-8 overflow-hidden md:col-span-7">
                     <span className="pj-rise block">
-                      <span className="pj-shift relative block overflow-hidden pb-[0.06em] font-display text-[clamp(2.4rem,7vw,7rem)] font-bold uppercase leading-[1] tracking-[-0.03em]">
+                      <span className="pj-shift relative block overflow-hidden pb-[0.06em] font-display text-[clamp(1.9rem,5vw,5.5rem)] font-bold uppercase leading-[1] tracking-[-0.03em]">
                         <span className="pj-name block">{p.title}</span>
                         <span aria-hidden className="pj-name absolute left-0 top-0 block translate-y-full">
                           {p.title}
@@ -174,7 +174,16 @@ const Projects = () => {
                   </span>
 
                   <span className="col-span-3 hidden overflow-hidden font-mono text-xs uppercase tracking-[0.16em] text-paper/60 md:block">
-                    <span className="pj-rise block">{p.subtitle}</span>
+                    <span className="pj-rise flex flex-col items-start gap-2">
+                      <span
+                        className={`rounded-full border px-2.5 py-0.5 text-[10px] ${
+                          p.kind === "Personal" ? "border-line" : "border-paper/60 text-paper"
+                        }`}
+                      >
+                        {p.kind}
+                      </span>
+                      {p.subtitle}
+                    </span>
                   </span>
 
                   <span className="col-span-2 flex justify-end md:col-span-1">
@@ -191,10 +200,30 @@ const Projects = () => {
               <div id={`project-${i}`} className="pj-body h-0 overflow-hidden">
                 <div className="grid gap-10 pb-14 pt-6 md:grid-cols-12 md:px-4">
                   <div className="flex flex-col gap-6 md:col-span-5 md:col-start-2">
-                    <p className="pj-detail text-gradient font-display text-2xl font-semibold">
-                      {p.subtitle}
-                    </p>
+                    <div className="pj-detail">
+                      <p className="font-mono text-[11px] uppercase tracking-[0.18em] text-muted">
+                        {p.kind === "Client"
+                          ? `Client project — ${p.company}`
+                          : p.kind === "Product"
+                            ? `Company product — ${p.company}`
+                            : "Personal project"}
+                      </p>
+                      <p className="text-gradient mt-2 font-display text-2xl font-semibold">{p.subtitle}</p>
+                    </div>
                     <p className="pj-detail text-lg leading-relaxed text-paper/70">{p.description}</p>
+                    {p.highlights && (
+                      <ul className="pj-detail flex flex-col">
+                        {p.highlights.map((h) => (
+                          <li key={h} className="flex gap-3 border-t border-line py-3 text-paper/70">
+                            <span
+                              className="mt-[0.55em] h-1.5 w-1.5 shrink-0 rounded-full"
+                              style={{ background: p.accent }}
+                            />
+                            {h}
+                          </li>
+                        ))}
+                      </ul>
+                    )}
                     <div className="pj-detail flex flex-wrap gap-2">
                       {p.tech.map((t) => (
                         <span
@@ -205,24 +234,27 @@ const Projects = () => {
                         </span>
                       ))}
                     </div>
-                    <div className="pj-detail flex gap-6 font-mono text-xs uppercase tracking-[0.18em]">
-                      <a
-                        href={p.githubUrl}
-                        target="_blank"
-                        rel="noopener noreferrer"
-                        className="group border-b border-line pb-1"
-                      >
-                        <RollText>Source ↗</RollText>
-                      </a>
-                      <a
-                        href={p.demoUrl}
-                        target="_blank"
-                        rel="noopener noreferrer"
-                        className="group border-b border-line pb-1"
-                      >
-                        <RollText>Live demo ↗</RollText>
-                      </a>
-                    </div>
+                    {p.note && (
+                      <p className="pj-detail flex items-center gap-3 font-mono text-xs uppercase tracking-[0.16em] text-muted">
+                        <span className="h-1.5 w-1.5 rounded-full" style={{ background: p.accent }} />
+                        {p.note}
+                      </p>
+                    )}
+                    {p.links.length > 0 && (
+                      <div className="pj-detail flex flex-wrap gap-6 font-mono text-xs uppercase tracking-[0.18em]">
+                        {p.links.map((link) => (
+                          <a
+                            key={link.url}
+                            href={link.url}
+                            target="_blank"
+                            rel="noopener noreferrer"
+                            className="group border-b border-line pb-1"
+                          >
+                            <RollText>{`${link.label} ↗`}</RollText>
+                          </a>
+                        ))}
+                      </div>
+                    )}
                   </div>
 
                   <div className="pj-art relative aspect-[8/5] overflow-hidden rounded-2xl border border-line md:col-span-6 md:aspect-auto md:h-[420px]">

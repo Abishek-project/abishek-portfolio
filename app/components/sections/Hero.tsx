@@ -5,11 +5,11 @@ import { gsap, SplitText, useGSAP } from "@/lib/gsap";
 import { onIntro } from "@/lib/scroll";
 import { Profile } from "@/constants";
 import Magnetic from "../Magnetic";
+import Aurora from "../Aurora";
 
 const Hero = () => {
   const root = useRef<HTMLElement>(null);
   const name = useRef<HTMLHeadingElement>(null);
-  const glow = useRef<HTMLDivElement>(null);
 
   useGSAP(
     () => {
@@ -26,8 +26,7 @@ const Hero = () => {
         .timeline({ paused: true, defaults: { ease: "power4.out" } })
         .to(split.chars, { yPercent: 0, duration: 1.4, stagger: 0.06 }, 0.2)
         .to(".hero-line", { scaleX: 1, duration: 1.4, ease: "expo.inOut" }, 0.4)
-        .to(".hero-fade", { autoAlpha: 1, y: 0, duration: 1, stagger: 0.08 }, 0.8)
-        .from(".hero-video", { scale: 1.3, autoAlpha: 0, duration: 2.4, ease: "power2.out" }, 0);
+        .to(".hero-fade", { autoAlpha: 1, y: 0, duration: 1, stagger: 0.08 }, 0.8);
 
       const offIntro = onIntro(() => intro.play());
 
@@ -57,24 +56,9 @@ const Hero = () => {
           yPercent: (i: number) => -40 - Math.abs(i - (split.masks.length - 1) / 2) * 18,
           ease: "none",
         }, 0)
-        .to(".hero-content", { yPercent: 25, autoAlpha: 0.2, ease: "none" }, 0)
-        .to(".hero-video-wrap", { yPercent: 30, scale: 1.15, ease: "none" }, 0);
+        .to(".hero-content", { yPercent: 25, autoAlpha: 0.2, ease: "none" }, 0);
 
-      // Glow follows the pointer
-      gsap.set(glow.current, { xPercent: -50, yPercent: -50, x: "50vw", y: "40vh" });
-      const xTo = gsap.quickTo(glow.current, "x", { duration: 1.2, ease: "power3" });
-      const yTo = gsap.quickTo(glow.current, "y", { duration: 1.2, ease: "power3" });
-      const move = (e: PointerEvent) => {
-        const r = root.current!.getBoundingClientRect();
-        xTo(e.clientX - r.left);
-        yTo(e.clientY - r.top);
-      };
-      root.current?.addEventListener("pointermove", move);
-
-      return () => {
-        offIntro();
-        root.current?.removeEventListener("pointermove", move);
-      };
+      return offIntro;
     },
     { scope: root }
   );
@@ -86,24 +70,11 @@ const Hero = () => {
       className="relative flex min-h-[100svh] flex-col justify-end overflow-hidden px-5 pb-8 pt-28 md:px-10 md:pb-10"
     >
       {/* Atmosphere */}
-      <div aria-hidden className="pointer-events-none absolute inset-0">
-        <div className="hero-video-wrap absolute inset-0 [mask-image:linear-gradient(to_bottom,black_35%,transparent_75%)]">
-          <video
-            className="hero-video absolute left-[-30%] top-[-20vw] w-[160%] max-w-none opacity-70 mix-blend-screen md:left-0 md:top-[-12vw] md:w-full"
-            autoPlay
-            muted
-            loop
-            playsInline
-          >
-            <source src="/blackhole.webm" type="video/webm" />
-          </video>
-        </div>
-        <div
-          ref={glow}
-          className="absolute left-0 top-0 h-[24rem] w-[24rem] rounded-full md:h-[40rem] md:w-[40rem] bg-violet/20 blur-[120px]"
-        />
-        <div className="absolute inset-x-0 bottom-0 h-1/2 bg-gradient-to-t from-ink via-ink/70 to-transparent" />
-      </div>
+      <Aurora className="pointer-events-none absolute inset-0" />
+      <div
+        aria-hidden
+        className="pointer-events-none absolute inset-x-0 bottom-0 h-1/3 bg-gradient-to-t from-ink to-transparent"
+      />
 
       <div className="hero-content relative">
         <div className="mb-6 flex flex-wrap items-end justify-between gap-4 font-mono text-xs uppercase tracking-[0.18em] text-muted">
