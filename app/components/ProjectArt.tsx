@@ -45,6 +45,351 @@ const Sparkles = ({ points }: { points: [number, number, number][] }) => (
   </g>
 );
 
+/* ─────────────────────────── ApeX (Gorilla Commerce AI agents + lakehouse) ─────────────────────────── */
+
+const AX = { srcY: 70, layerX: 60, layerW: 236 };
+const axLayers = [
+  { y: 112, n: "Bronze", s: "raw · Delta", c: "#d97706" },
+  { y: 160, n: "Silver", s: "cleaned · dbt", c: "#94a3b8" },
+  { y: 208, n: "Gold", s: "facts + dims", c: "#facc15" },
+];
+
+const ApexArt = ({ accent }: { accent: string }) => (
+  <Frame id="ax" accent={accent}>
+    {/* Lakehouse */}
+    <text x="40" y="52" fontSize="9" letterSpacing="2" fill="#fff" fillOpacity="0.45" style={{ fontFamily: "var(--font-mono)" }}>
+      LAKEHOUSE · DATABRICKS
+    </text>
+    {["Amazon", "Walmart", "NetSuite"].map((t, i) => (
+      <g key={t}>
+        <rect x={40 + i * 86} y={AX.srcY - 6} width="78" height="22" rx="11" fill="#fff" fillOpacity="0.06" stroke="#fff" strokeOpacity="0.12" />
+        <text x={79 + i * 86} y={AX.srcY + 9} textAnchor="middle" fontSize="9.5" fill="#efece6" style={{ fontFamily: "var(--font-mono)" }}>
+          {t}
+        </text>
+      </g>
+    ))}
+    {axLayers.map((l) => (
+      <g key={l.n}>
+        <rect x="40" y={l.y} width="256" height="36" rx="10" fill={l.c} fillOpacity="0.14" stroke={l.c} strokeOpacity="0.55" />
+        <text x="56" y={l.y + 23} fontSize="12" fontWeight="700" fill="#efece6" style={{ fontFamily: "var(--font-sans)" }}>
+          {l.n}
+        </text>
+        <text x="282" y={l.y + 23} textAnchor="end" fontSize="9" fill="#fff" fillOpacity="0.5" style={{ fontFamily: "var(--font-mono)" }}>
+          {l.s}
+        </text>
+      </g>
+    ))}
+    {Array.from({ length: 6 }, (_, i) => (
+      <circle key={i} className="ax-bit" cx={79 + (i % 3) * 86} cy={AX.srcY + 18} r="3.5" fill={["#d97706", "#94a3b8", "#facc15"][i % 3]} />
+    ))}
+
+    {/* Finance workload */}
+    <g transform="translate(40 268)">
+      <rect width="256" height="190" rx="16" fill="#16151d" stroke="#fff" strokeOpacity="0.1" />
+      <text x="18" y="30" fontSize="9" letterSpacing="2" fill="#fff" fillOpacity="0.45" style={{ fontFamily: "var(--font-mono)" }}>
+        FINANCE WORKLOAD
+      </text>
+      <text x="18" y="56" fontSize="16" fontWeight="700" fill="#efece6" style={{ fontFamily: "var(--font-display)" }}>
+        Inventory Reserve
+      </text>
+      <text x="18" y="74" fontSize="10" fill="#fff" fillOpacity="0.5" style={{ fontFamily: "var(--font-sans)" }}>
+        reads gold · replaces a 29-tab workbook
+      </text>
+      {/* dry-run → live toggle */}
+      <text x="18" y="108" fontSize="10" fill="#fff" fillOpacity="0.6" style={{ fontFamily: "var(--font-mono)" }}>
+        DRY RUN
+      </text>
+      <rect x="82" y="96" width="44" height="16" rx="8" className="ax-track" fill="#fff" fillOpacity="0.15" />
+      <circle className="ax-knob" cx="91" cy="104" r="6" fill="#efece6" />
+      <text x="134" y="108" fontSize="10" fontWeight="700" className="ax-live" fill="#4ade80" opacity="0.3" style={{ fontFamily: "var(--font-mono)" }}>
+        LIVE
+      </text>
+      <rect x="18" y="124" width="220" height="48" rx="10" fill="#fff" fillOpacity="0.04" />
+      <text x="30" y="144" fontSize="9" fill="#fff" fillOpacity="0.45" style={{ fontFamily: "var(--font-mono)" }}>
+        ROWS
+      </text>
+      <text className="ax-rows" x="30" y="163" fontSize="16" fontWeight="700" fill="#efece6" style={{ fontFamily: "var(--font-mono)" }}>
+        9,031
+      </text>
+      <text className="ax-match" x="226" y="160" textAnchor="end" fontSize="10" fill="#86efac" opacity="0" style={{ fontFamily: "var(--font-mono)" }}>
+        ✓ live = dry run
+      </text>
+    </g>
+
+    {/* Pricing agent */}
+    <g transform="translate(320 40)">
+      <rect width="444" height="418" rx="18" fill="#121118" stroke="#fff" strokeOpacity="0.12" />
+      <path d="M0 40H444" stroke="#fff" strokeOpacity="0.08" />
+      <text x="18" y="26" fontSize="12" fontWeight="600" fill="#efece6" style={{ fontFamily: "var(--font-sans)" }}>
+        Pricing agent · Bedrock AgentCore
+      </text>
+      <rect x="352" y="13" width="76" height="18" rx="9" fill="#22c55e" fillOpacity="0.16" />
+      <text x="390" y="26" textAnchor="middle" fontSize="8.5" fill="#86efac" style={{ fontFamily: "var(--font-mono)" }}>
+        ENTRA ✓
+      </text>
+
+      <g className="ax-ask" opacity="0">
+        <rect x="150" y="56" width="276" height="34" rx="12" fill={accent} />
+        <text x="164" y="77" fontSize="11" fill="#fff" style={{ fontFamily: "var(--font-sans)" }}>
+          Which SKUs are priced above competitors?
+        </text>
+      </g>
+
+      <g className="ax-tools" opacity="0">
+        <rect x="18" y="104" width="196" height="24" rx="12" fill="#facc15" fillOpacity="0.12" stroke="#facc15" strokeOpacity="0.45" />
+        <text x="116" y="120" textAnchor="middle" fontSize="9" fill="#fde68a" style={{ fontFamily: "var(--font-mono)" }}>
+          8 UC tools via MCP · gold
+        </text>
+        <rect x="222" y="104" width="204" height="24" rx="12" fill="#fff" fillOpacity="0.06" />
+        <text x="324" y="120" textAnchor="middle" fontSize="9" fill="#efece6" fillOpacity="0.8" style={{ fontFamily: "var(--font-mono)" }}>
+          as the signed-in user
+        </text>
+      </g>
+
+      {/* Proposal card */}
+      <g className="ax-card" opacity="0">
+        <rect x="18" y="142" width="408" height="200" rx="14" fill="#1b1a23" stroke={accent} strokeOpacity="0.5" />
+        <text x="34" y="166" fontSize="9" letterSpacing="1.5" fill={accent} style={{ fontFamily: "var(--font-mono)" }}>
+          PRICE PROPOSAL
+        </text>
+        <text x="34" y="192" fontSize="14" fontWeight="700" fill="#efece6" style={{ fontFamily: "var(--font-sans)" }}>
+          GG Rug Pad · 5×8 ft
+        </text>
+        <text x="34" y="226" fontSize="22" fontWeight="700" fill="#efece6" style={{ fontFamily: "var(--font-display)" }}>
+          $29.99 → $28.49
+        </text>
+        <rect x="262" y="208" width="52" height="22" rx="11" fill="#ef4444" fillOpacity="0.18" />
+        <text x="288" y="223" textAnchor="middle" fontSize="10" fill="#fca5a5" style={{ fontFamily: "var(--font-mono)" }}>
+          −5%
+        </text>
+        <text x="34" y="250" fontSize="10.5" fill="#fff" fillOpacity="0.55" style={{ fontFamily: "var(--font-sans)" }}>
+          Competitor dropped to $27.99 · sales rank slipping
+        </text>
+        <g className="ax-rules">
+          <rect x="34" y="262" width="150" height="22" rx="11" fill="#22c55e" fillOpacity="0.14" />
+          <text x="109" y="277" textAnchor="middle" fontSize="9" fill="#86efac" style={{ fontFamily: "var(--font-mono)" }}>
+            ✓ margin floor
+          </text>
+          <rect x="192" y="262" width="150" height="22" rx="11" fill="#22c55e" fillOpacity="0.14" />
+          <text x="267" y="277" textAnchor="middle" fontSize="9" fill="#86efac" style={{ fontFamily: "var(--font-mono)" }}>
+            ✓ ≤ 5% a day
+          </text>
+        </g>
+        <rect x="34" y="296" width="120" height="34" rx="17" fill="none" stroke="#fff" strokeOpacity="0.25" />
+        <text x="94" y="318" textAnchor="middle" fontSize="12" fill="#efece6" style={{ fontFamily: "var(--font-sans)" }}>
+          Reject
+        </text>
+        <g className="ax-approve">
+          <rect x="164" y="296" width="140" height="34" rx="17" fill={accent} />
+          <text x="234" y="318" textAnchor="middle" fontSize="12" fontWeight="700" fill="#fff" style={{ fontFamily: "var(--font-sans)" }}>
+            Approve
+          </text>
+        </g>
+      </g>
+      <g className="ax-done" opacity="0">
+        <rect x="18" y="354" width="408" height="44" rx="12" fill="#22c55e" fillOpacity="0.14" stroke="#22c55e" strokeOpacity="0.5" />
+        <text x="222" y="381" textAnchor="middle" fontSize="12" fontWeight="600" fill="#86efac" style={{ fontFamily: "var(--font-sans)" }}>
+          ✓ Approved by pricing manager · logged
+        </text>
+      </g>
+    </g>
+  </Frame>
+);
+
+/* ─────────────────────────── StoryMD (AgentCore multi-agent health assistant) ─────────────────────────── */
+
+const SM = {
+  guard: { x: 382, y: 222 },
+  orch: { x: 486, y: 222 },
+  rec: { x: 660, y: 132 },
+  kb: { x: 660, y: 312 },
+};
+
+const Node = ({
+  x,
+  y,
+  w,
+  title,
+  sub,
+  cls,
+  color,
+}: {
+  x: number;
+  y: number;
+  w: number;
+  title: string;
+  sub: string;
+  cls: string;
+  color: string;
+}) => (
+  <g className={cls}>
+    <rect x={x - w / 2} y={y - 30} width={w} height="60" rx="14" fill="#16151d" stroke={color} strokeOpacity="0.55" strokeWidth="1.5" />
+    <text x={x} y={y - 4} textAnchor="middle" fontSize="12" fontWeight="600" fill="#efece6" style={{ fontFamily: "var(--font-sans)" }}>
+      {title}
+    </text>
+    <text x={x} y={y + 14} textAnchor="middle" fontSize="9" letterSpacing="1" fill={color} style={{ fontFamily: "var(--font-mono)" }}>
+      {sub}
+    </text>
+  </g>
+);
+
+const StoryMdArt = ({ accent }: { accent: string }) => (
+  <Frame id="sm" accent={accent}>
+    {/* Chat window */}
+    <rect x="36" y="34" width="300" height="432" rx="18" fill="#121118" stroke="#fff" strokeOpacity="0.12" />
+    <path d="M36 74H336" stroke="#fff" strokeOpacity="0.08" />
+    <text x="54" y="59" fontSize="12" fontWeight="600" fill="#efece6" style={{ fontFamily: "var(--font-sans)" }}>
+      StoryMD · Health assistant
+    </text>
+    <rect x="250" y="47" width="70" height="18" rx="9" fill="#fff" fillOpacity="0.06" />
+    <rect className="sm-model" x="252" y="49" width="34" height="14" rx="7" fill={accent} fillOpacity="0.85" />
+    <text x="269" y="59" textAnchor="middle" fontSize="7.5" fontWeight="700" fill="#0e0d13" style={{ fontFamily: "var(--font-mono)" }}>
+      SONNET
+    </text>
+    <text x="303" y="59" textAnchor="middle" fontSize="7.5" fill="#fff" fillOpacity="0.5" style={{ fontFamily: "var(--font-mono)" }}>
+      HAIKU
+    </text>
+
+    <g className="sm-q" opacity="0">
+      <rect x="132" y="92" width="186" height="34" rx="12" fill={accent} />
+      <text x="146" y="113" fontSize="11.5" fill="#062b26" style={{ fontFamily: "var(--font-sans)" }}>
+        How is my HbA1c trending?
+      </text>
+    </g>
+
+    <g className="sm-a">
+      <rect x="54" y="140" width="264" height="232" rx="14" fill="#1b1a23" />
+      {[
+        { w: 220, t: "Good news — it's improving." },
+        { w: 236, t: "HbA1c fell from 7.8% (Oct) to 7.2% (Mar)," },
+        { w: 200, t: "closer to the under-7% goal for diabetes." },
+      ].map((l, i) => (
+        <text key={i} className="sm-line" x="68" y={164 + i * 18} fontSize="11" fill="#efece6" opacity="0" style={{ fontFamily: "var(--font-sans)" }}>
+          {l.t}
+        </text>
+      ))}
+      {/* trend chart */}
+      <g className="sm-chart" opacity="0">
+        <rect x="68" y="222" width="236" height="96" rx="10" fill="#fff" fillOpacity="0.04" />
+        <path d="M80 300 H292" stroke="#fff" strokeOpacity="0.08" />
+        <path d="M80 248 H292" stroke="#22c55e" strokeOpacity="0.35" strokeDasharray="3 4" />
+        <text x="290" y="244" textAnchor="end" fontSize="8" fill="#86efac" style={{ fontFamily: "var(--font-mono)" }}>
+          goal 7.0
+        </text>
+        <path
+          className="sm-trend"
+          d="M84 270 L132 262 L180 282 L228 276 L284 258"
+          fill="none"
+          stroke={accent}
+          strokeWidth="3"
+          strokeLinecap="round"
+          strokeLinejoin="round"
+          strokeDasharray="230"
+          strokeDashoffset="230"
+        />
+        {[
+          [84, 270],
+          [132, 262],
+          [180, 282],
+          [228, 276],
+          [284, 258],
+        ].map(([x, y], i) => (
+          <circle key={i} className="sm-dot" cx={x} cy={y} r="3.5" fill={accent} opacity="0" />
+        ))}
+        <text x="80" y="312" fontSize="8" fill="#fff" fillOpacity="0.4" style={{ fontFamily: "var(--font-mono)" }}>
+          OCT
+        </text>
+        <text x="292" y="312" textAnchor="end" fontSize="8" fill="#fff" fillOpacity="0.4" style={{ fontFamily: "var(--font-mono)" }}>
+          MAR
+        </text>
+      </g>
+      <g className="sm-refs" opacity="0">
+        <rect x="68" y="332" width="92" height="22" rx="11" fill="#fff" fillOpacity="0.06" />
+        <text x="114" y="347" textAnchor="middle" fontSize="9" fill="#efece6" fillOpacity="0.75" style={{ fontFamily: "var(--font-mono)" }}>
+          PHR · labs
+        </text>
+        <rect x="166" y="332" width="120" height="22" rx="11" fill="#fff" fillOpacity="0.06" />
+        <text x="226" y="347" textAnchor="middle" fontSize="9" fill="#efece6" fillOpacity="0.75" style={{ fontFamily: "var(--font-mono)" }}>
+          Knowledge Base
+        </text>
+      </g>
+    </g>
+    <rect x="54" y="392" width="264" height="56" rx="12" fill="#fff" fillOpacity="0.04" stroke="#fff" strokeOpacity="0.08" />
+    <text x="70" y="424" fontSize="11" fill="#fff" fillOpacity="0.35" style={{ fontFamily: "var(--font-sans)" }}>
+      Ask about your health…
+    </text>
+
+    {/* Agent graph */}
+    <text x="362" y="62" fontSize="9" letterSpacing="2" fill="#fff" fillOpacity="0.45" style={{ fontFamily: "var(--font-mono)" }}>
+      BEDROCK AGENTCORE RUNTIME
+    </text>
+    <rect x="352" y="74" width="412" height="314" rx="16" fill="none" stroke="#fff" strokeOpacity="0.08" strokeDasharray="4 5" />
+    {/* edges */}
+    <path d={`M336 ${SM.guard.y} H${SM.guard.x - 22}`} stroke="#fff" strokeOpacity="0.15" strokeWidth="1.5" />
+    <path d={`M${SM.guard.x + 22} ${SM.guard.y} H${SM.orch.x - 62}`} stroke="#fff" strokeOpacity="0.15" strokeWidth="1.5" />
+    <path d={`M${SM.orch.x + 62} ${SM.orch.y - 10} L${SM.rec.x - 82} ${SM.rec.y + 10}`} stroke="#fff" strokeOpacity="0.15" strokeWidth="1.5" />
+    <path d={`M${SM.orch.x + 62} ${SM.orch.y + 10} L${SM.kb.x - 82} ${SM.kb.y - 10}`} stroke="#fff" strokeOpacity="0.15" strokeWidth="1.5" />
+
+    {/* guardrail shield */}
+    <g className="sm-guard">
+      <path
+        d={`M${SM.guard.x} ${SM.guard.y - 22}l18 7v12c0 12-8 20-18 25c-10-5-18-13-18-25v-12Z`}
+        fill="#f59e0b"
+        fillOpacity="0.9"
+      />
+      <path d={`M${SM.guard.x - 7} ${SM.guard.y}l5 5l9-10`} stroke="#0e0d13" strokeWidth="2.5" fill="none" strokeLinecap="round" />
+      <text x={SM.guard.x} y={SM.guard.y + 44} textAnchor="middle" fontSize="8.5" fill="#fcd34d" style={{ fontFamily: "var(--font-mono)" }}>
+        GUARDRAILS
+      </text>
+    </g>
+
+    <Node x={SM.orch.x} y={SM.orch.y} w={124} title="Orchestrator" sub="CLAUDE SONNET" cls="sm-orch" color={accent} />
+    <Node x={SM.rec.x} y={SM.rec.y} w={164} title="Patient records" sub="SPECIALIST · HAIKU" cls="sm-rec" color="#a78bfa" />
+    <Node x={SM.kb.x} y={SM.kb.y} w={164} title="Medical knowledge" sub="SPECIALIST · HAIKU" cls="sm-kb" color="#38bdf8" />
+
+    {/* tools */}
+    {[
+      { x: 612, y: 184, t: "PHR API", c: "#a78bfa", cls: "sm-tool-phr" },
+      { x: 702, y: 184, t: "Dashboard", c: "#a78bfa", cls: "sm-tool-dash" },
+      { x: 660, y: 364, t: "Knowledge Base", c: "#38bdf8", cls: "sm-tool-kb" },
+    ].map((t) => (
+      <g key={t.t} className={t.cls}>
+        <rect x={t.x - 42} y={t.y - 11} width="84" height="22" rx="11" fill={t.c} fillOpacity="0.14" stroke={t.c} strokeOpacity="0.45" />
+        <text x={t.x} y={t.y + 4} textAnchor="middle" fontSize="9" fill="#efece6" style={{ fontFamily: "var(--font-mono)" }}>
+          {t.t}
+        </text>
+      </g>
+    ))}
+
+    {/* pulses */}
+    <circle className="sm-p0" r="5" fill={accent} opacity="0" cx="336" cy={SM.guard.y} />
+    <circle className="sm-p1" r="5" fill="#a78bfa" opacity="0" cx={SM.orch.x + 62} cy={SM.orch.y - 10} />
+    <circle className="sm-p2" r="5" fill="#38bdf8" opacity="0" cx={SM.orch.x + 62} cy={SM.orch.y + 10} />
+
+    {/* memory + token meter */}
+    <g transform="translate(352 402)">
+      <rect width="160" height="54" rx="12" fill="#16151d" stroke="#fff" strokeOpacity="0.08" />
+      <text x="14" y="22" fontSize="8.5" letterSpacing="1.5" fill="#fff" fillOpacity="0.45" style={{ fontFamily: "var(--font-mono)" }}>
+        AGENTCORE MEMORY
+      </text>
+      <text x="14" y="42" fontSize="11" fill="#efece6" style={{ fontFamily: "var(--font-sans)" }}>
+        8-message window
+      </text>
+    </g>
+    <g transform="translate(524 402)">
+      <rect width="240" height="54" rx="12" fill="#16151d" stroke="#fff" strokeOpacity="0.08" />
+      <text x="14" y="22" fontSize="8.5" letterSpacing="1.5" fill="#fff" fillOpacity="0.45" style={{ fontFamily: "var(--font-mono)" }}>
+        PROMPT CACHE HIT
+      </text>
+      <rect x="14" y="32" width="160" height="10" rx="5" fill="#fff" fillOpacity="0.08" />
+      <rect className="sm-cache" x="14" y="32" width="144" height="10" rx="5" fill={accent} />
+      <text className="sm-cache-pct" x="226" y="42" textAnchor="end" fontSize="13" fontWeight="700" fill="#efece6" style={{ fontFamily: "var(--font-mono)" }}>
+        90%
+      </text>
+    </g>
+  </Frame>
+);
+
 /* ─────────────────────────── MLCC (Dubai Metro fuel delivery) ─────────────────────────── */
 
 const ML = { cloudX: 396, cloudY: 132, queueX: 304, queueY0: 262, gap: 50 };
@@ -1452,7 +1797,7 @@ const NovaArt = ({ accent }: { accent: string }) => (
 
 /* ─────────────────────────── Animation ─────────────────────────── */
 
-const scenes = { mlcc: MlccArt, connect: ConnectArt, dualy: DualyArt, migros: MigrosArt, dvag: DvagArt, mythings: MyThingsArt, sparkzen: SparkZenArt, eazybuy: EazyBuyArt, groupsync: GroupSyncArt, nova: NovaArt };
+const scenes = { apex: ApexArt, storymd: StoryMdArt, mlcc: MlccArt, connect: ConnectArt, dualy: DualyArt, migros: MigrosArt, dvag: DvagArt, mythings: MyThingsArt, sparkzen: SparkZenArt, eazybuy: EazyBuyArt, groupsync: GroupSyncArt, nova: NovaArt };
 export type ArtKey = keyof typeof scenes;
 
 const ProjectArt = ({ art, accent, title }: { art: ArtKey; accent: string; title: string }) => {
@@ -1564,6 +1909,97 @@ const ProjectArt = ({ art, accent, title }: { art: ArtKey; accent: string; title
             },
           })
           .fromTo(".cc-bar", { scaleX: 0 }, { scaleX: 1, transformOrigin: "0% 50%", duration: 0.8, stagger: 0.12, ease: "power3.out" }, "<");
+      }
+
+      // ApeX: data flows to gold, the pricing agent proposes, a manager approves, Finance goes live
+      if (root.current?.querySelector(".ax-card")) {
+        gsap.fromTo(".ax-bit", { y: 0, opacity: 0 }, {
+          keyframes: [
+            { opacity: 1, duration: 0.2 },
+            { y: 160, duration: 1.8, ease: "power1.in" },
+            { opacity: 0, duration: 0.2 },
+          ],
+          stagger: { each: 0.35, repeat: -1 },
+        });
+        gsap
+          .timeline({ repeat: -1, repeatDelay: 1 })
+          .set([".ax-ask", ".ax-tools", ".ax-card", ".ax-done"], { opacity: 0 })
+          .fromTo(".ax-ask", { y: 8 }, { opacity: 1, y: 0, duration: 0.4, delay: 0.3 })
+          .to(".ax-tools", { opacity: 1, duration: 0.4, delay: 0.5 })
+          .fromTo(".ax-card", { y: 12 }, { opacity: 1, y: 0, duration: 0.5, ease: "power3.out", delay: 0.5 })
+          .fromTo(".ax-rules rect", { fillOpacity: 0.05 }, { fillOpacity: 0.3, duration: 0.25, stagger: 0.2, yoyo: true, repeat: 1 })
+          .to(".ax-approve", { scale: 0.94, transformOrigin: "50% 50%", duration: 0.12, yoyo: true, repeat: 1, delay: 0.6 })
+          .fromTo(".ax-done", { y: 8 }, { opacity: 1, y: 0, duration: 0.4 })
+          .to({}, { duration: 2 });
+        const rows = { v: 0 };
+        const rowsEl = root.current.querySelector(".ax-rows");
+        gsap
+          .timeline({ repeat: -1, repeatDelay: 1.5 })
+          .set(".ax-knob", { x: 0 })
+          .set(".ax-live", { opacity: 0.3 })
+          .set(".ax-match", { opacity: 0 })
+          .set(".ax-track", { fill: "#ffffff", fillOpacity: 0.15 })
+          .fromTo(rows, { v: 0 }, {
+            v: 9031,
+            duration: 1.6,
+            ease: "power2.out",
+            onUpdate: () => {
+              if (rowsEl) rowsEl.textContent = Math.round(rows.v).toLocaleString("en-US");
+            },
+          })
+          .to(".ax-knob", { x: 26, duration: 0.4, ease: "back.out(2)", delay: 0.5 })
+          .to(".ax-track", { fill: "#22c55e", fillOpacity: 0.6, duration: 0.3 }, "<")
+          .to(".ax-live", { opacity: 1, duration: 0.3 }, "<")
+          .to(".ax-match", { opacity: 1, duration: 0.4 })
+          .to({}, { duration: 2.4 });
+      }
+
+      // StoryMD: question → guardrails → orchestrator → specialists → grounded answer
+      if (root.current?.querySelector(".sm-orch")) {
+        const glow = { scale: 1.05, transformOrigin: "50% 50%", duration: 0.2, yoyo: true, repeat: 1 };
+        const pct = { v: 0 };
+        const pctEl = root.current.querySelector(".sm-cache-pct");
+        gsap
+          .timeline({ repeat: -1, repeatDelay: 1.2 })
+          .set([".sm-q", ".sm-line", ".sm-chart", ".sm-refs", ".sm-dot"], { opacity: 0 })
+          .set(".sm-trend", { strokeDashoffset: 230 })
+          .set(".sm-cache", { scaleX: 0, transformOrigin: "0% 50%" })
+          .fromTo(".sm-q", { y: 8 }, { opacity: 1, y: 0, duration: 0.4, delay: 0.3 })
+          .fromTo(".sm-p0", { attr: { cx: 336 }, opacity: 1 }, { attr: { cx: SM.orch.x - 62 }, duration: 0.8, ease: "power1.inOut" })
+          .to(".sm-guard", glow, "<0.25")
+          .to(".sm-p0", { opacity: 0, duration: 0.1 })
+          .to(".sm-orch", glow)
+          .fromTo(
+            ".sm-p1",
+            { attr: { cx: SM.orch.x + 62, cy: SM.orch.y - 10 }, opacity: 1 },
+            { attr: { cx: SM.rec.x - 82, cy: SM.rec.y + 10 }, duration: 0.6, ease: "power1.inOut" }
+          )
+          .fromTo(
+            ".sm-p2",
+            { attr: { cx: SM.orch.x + 62, cy: SM.orch.y + 10 }, opacity: 1 },
+            { attr: { cx: SM.kb.x - 82, cy: SM.kb.y - 10 }, duration: 0.6, ease: "power1.inOut" },
+            "<0.15"
+          )
+          .to([".sm-p1", ".sm-p2"], { opacity: 0, duration: 0.1 })
+          .to(".sm-rec", glow, "<")
+          .to(".sm-kb", glow, "<0.1")
+          .to([".sm-tool-phr", ".sm-tool-dash"], { scale: 1.1, transformOrigin: "50% 50%", duration: 0.18, yoyo: true, repeat: 1, stagger: 0.12 })
+          .to(".sm-tool-kb", { scale: 1.1, transformOrigin: "50% 50%", duration: 0.18, yoyo: true, repeat: 1 }, "<0.1")
+          .to(".sm-line", { opacity: 1, duration: 0.3, stagger: 0.35 })
+          .to(".sm-chart", { opacity: 1, duration: 0.3 })
+          .to(".sm-trend", { strokeDashoffset: 0, duration: 1, ease: "power2.out" })
+          .to(".sm-dot", { opacity: 1, duration: 0.2, stagger: 0.12 }, "<0.2")
+          .to(".sm-refs", { opacity: 1, duration: 0.3 })
+          .to(".sm-cache", { scaleX: 1, duration: 1, ease: "power2.out" }, "<")
+          .fromTo(pct, { v: 0 }, {
+            v: 90,
+            duration: 1,
+            ease: "power2.out",
+            onUpdate: () => {
+              if (pctEl) pctEl.textContent = `${Math.round(pct.v)}%`;
+            },
+          }, "<")
+          .to({}, { duration: 2.2 });
       }
 
       // MLCC: queue offline in the tunnel, reconnect, sync in order, operator approves

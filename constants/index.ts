@@ -110,7 +110,7 @@ export type Project = {
   /** Who it was built for/with — shown on client and company work */
   company?: string;
   accent: string;
-  art: "mlcc" | "connect" | "dualy" | "migros" | "dvag" | "mythings" | "sparkzen" | "eazybuy" | "groupsync" | "nova";
+  art: "apex" | "storymd" | "mlcc" | "connect" | "dualy" | "migros" | "dvag" | "mythings" | "sparkzen" | "eazybuy" | "groupsync" | "nova";
   tech: string[];
   description: string;
   /** Your contribution and results; listed as bullet points */
@@ -121,6 +121,49 @@ export type Project = {
 };
 
 export const Projects: Project[] = [
+  {
+    title: "ApeX",
+    subtitle: "Gorilla Commerce · AI agents + data",
+    kind: "Client",
+    company: "BUILDSTR, for Gorilla Commerce (USA)",
+    accent: "#6366f1",
+    art: "apex",
+    tech: ["Python", "TypeScript", "Amazon Bedrock AgentCore", "Strands Agents", "Claude Sonnet", "Databricks Agent Bricks", "OpenAI Agents SDK", "MCP", "Unity Catalog", "Vector Search", "MLflow", "AWS Lambda", "React", "Microsoft Entra ID"],
+    description:
+      "AI and data engineering for Gorilla Commerce — a private-equity-backed, nine-figure e-commerce company (Gorilla Grip) selling 3,000+ products (11,000+ SKUs) across 6 channels and 4 Amazon marketplaces — on ApeX, its 31-agent roadmap to automate pricing, advertising and finance work. The agents run on a medallion lakehouse of 100M+ advertising records and 5M+ orders from 15+ source systems. I built 3 AI agents across AWS Bedrock AgentCore and Databricks, designed a fourth, and shipped Finance data workloads to production.",
+    highlights: [
+      "Pricing agent on AWS Bedrock AgentCore (Claude Sonnet, Strands): answers product managers' pricing questions with 8 Unity Catalog SQL tools over 10 gold tables — ranks SKUs by margin, flags price-change candidates, simulates margin at a new price and drafts a price-change card for a person to approve. Built and deployed its React/TypeScript chat app with Microsoft Entra ID",
+      "MCP tool integration: Databricks-managed MCP servers expose Unity Catalog functions as agent tools, routed through AgentCore Gateway with per-user token exchange so the agent only reads data the signed-in user is allowed to see",
+      "Rebuilt the pricing agent on Databricks Agent Bricks with an AWS Lambda token-exchange backend, tested all 8 tools end to end, and fixed a token-counting bug that overstated usage ~100×",
+      "Led the AgentCore vs Agent Bricks comparison across memory, tracing, tools and approval flows, and logged 15 product issues with Databricks' product team — who fixed the approval sign-in bug we raised",
+      "Customer-order agent prototype on Databricks (OpenAI Agents SDK): order status, recent orders, products by category and delivery dates, using vector search and 6 MCP tools — evaluated with MLflow simulated conversations and scorers",
+      "Designed the Advertising agent toward a return-on-ad-spend target, mapping its 8 planned features (bids, budgets, keywords, dayparting, cross-platform spend) against the live bid agent, its MCP tools and 100M+ ad records",
+      "Data engineering in an AI-agent SDLC: shipped two Finance workloads (Inventory Reserve and Inventory Age) to production on the gold layer, working with a fleet of 10 Claude Code agents through a 15-phase spec-to-deploy workflow — 17 merged pull requests",
+    ],
+    links: [],
+    note: "Internal ApeX platform for Gorilla Commerce teams — not publicly available",
+  },
+  {
+    title: "StoryMD",
+    subtitle: "Multi-agent AI · Bedrock AgentCore",
+    kind: "Client",
+    company: "BUILDSTR, for StoryMD (USA)",
+    accent: "#2dd4bf",
+    art: "storymd",
+    tech: ["Amazon Bedrock AgentCore", "Strands Agents", "Multi-agent (agents-as-tools)", "Claude Sonnet + Haiku", "Bedrock Knowledge Base (RAG)", "AgentCore Memory", "Bedrock Guardrails", "TypeScript", "AWS CDK", "React", "CloudWatch"],
+    description:
+      "AI engineering for StoryMD, a US personal-health-record platform. I designed and built AI agents on Amazon Bedrock AgentCore that let patients talk to their own health data in plain language — including a multi-agent system where a Claude Sonnet orchestrator routes each question to specialist agents for patient records and medical knowledge. Every answer is grounded in the patient's labs, medications, allergies and vaccinations, protected by guardrails, and tracked for cost per user.",
+    highlights: [
+      "Designed and built a multi-agent system with the agents-as-tools pattern: a Claude Sonnet orchestrator that plans and routes, and Claude Haiku specialist agents for patient records and medical knowledge, each with its own tools — deployed as its own CDK stack",
+      "Built and deployed the production-ready health assistant agent on Amazon Bedrock AgentCore Runtime with Strands Agents, streaming answers to a React chat UI over SSE",
+      "Gave the agents tools and memory: PHR API and health-dashboard tools, RAG over a Bedrock Knowledge Base, and AgentCore Memory for conversation history",
+      "Optimised LLM cost and context with prompt caching, an 8-message sliding window and tool-result compaction — caching alone saves about 25–30% a month",
+      "Made the agents safe and observable: Bedrock Guardrails against prompt attacks with PII redaction and denied topics, plus CloudWatch dashboards tracking tokens per user, session and turn",
+      "Delivered all 10 SOW deliverables in 4 weeks, fully in AWS CDK (TypeScript), with Keycloak sign-in, S3 + CloudFront hosting and a full handover and production-readiness guide",
+    ],
+    links: [],
+    note: "Proof of concept for StoryMD — deployed to their staging environment",
+  },
   {
     title: "MLCC",
     subtitle: "Dubai Metro Blue Line · fuel delivery",
