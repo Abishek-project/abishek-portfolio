@@ -110,7 +110,7 @@ export type Project = {
   /** Who it was built for/with — shown on client and company work */
   company?: string;
   accent: string;
-  art: "mlcc" | "migros" | "dvag" | "mythings" | "sparkzen" | "eazybuy" | "groupsync" | "nova";
+  art: "mlcc" | "connect" | "migros" | "dvag" | "mythings" | "sparkzen" | "eazybuy" | "groupsync" | "nova";
   tech: string[];
   description: string;
   /** Your contribution and results; listed as bullet points */
@@ -141,6 +141,27 @@ export const Projects: Project[] = [
     ],
     links: [],
     note: "Internal app for MLCC field teams — shipped via in-app updates",
+  },
+  {
+    title: "Connect AI",
+    subtitle: "AI contact center · Amazon Connect",
+    kind: "Client",
+    company: "an Amazon Connect customer",
+    accent: "#fb7185",
+    art: "connect",
+    tech: ["React + TypeScript", "Redux Toolkit", "Amazon Connect", "Amazon Bedrock Agents", "API Gateway + Lambda", "Cognito", "S3", "QuickSight + Amazon Q", "Docker · ECS Fargate", "GitLab CI/CD"],
+    description:
+      "An AI-powered support desk on Amazon Connect. While a customer chats, an Amazon Bedrock agent scores their sentiment in real time — and when it drops, for example at the cancellation stage, the agent instantly sees targeted retention offers, AI-drafted replies and a summary of the conversation. Embedded QuickSight dashboards with Amazon Q let admins explore sentiment, agent performance and revenue in plain English. A full-stack build: React front ends running as containers on AWS ECS Fargate, deployed through GitLab CI/CD, on top of a serverless back end (API Gateway + Lambda) that calls the Bedrock agents.",
+    highlights: [
+      "Built the agent desk in React on Amazon Connect (Streams + ChatJS), with Cognito sign-in and past chats loaded from S3",
+      "Integrated real-time sentiment scoring from an Amazon Bedrock agent, plus an AI summary generated at the end of every chat",
+      "Retention-offer insights that surface targeted offers when sentiment drops, to reduce churn at the cancellation stage",
+      "AI Copilot and one-click quick-reply suggestions, powered by a Bedrock agent",
+      "Embedded Amazon QuickSight dashboards with Amazon Q, restricted to admins through role-based access",
+      "Connected the front ends to the serverless API Gateway + Lambda back end, and supported their Docker builds and GitLab CI/CD deploys to ECS Fargate across dev and demo environments",
+    ],
+    links: [],
+    note: "Proof of concept built for the customer — not publicly available",
   },
   {
     title: "Migros Bank",

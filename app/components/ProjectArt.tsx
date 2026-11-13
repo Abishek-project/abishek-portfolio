@@ -230,6 +230,134 @@ const MlccArt = ({ accent }: { accent: string }) => (
   </Frame>
 );
 
+/* ─────────────────────────── AI Contact Center (Amazon Connect) ─────────────────────────── */
+
+const CC = { gx: 596, gy: 152, gr: 56, arc: Math.PI * 56 };
+const ccMsgs = [
+  { me: false, t: "What about my payment status?" },
+  { me: true, t: "Your ₹49,000 payment is confirmed." },
+  { me: false, t: "Why isn't it in my app? So fed up." },
+  { me: true, t: "Sorry! Here's 30% off your next bill." },
+  { me: false, t: "Oh, it works now — thanks!" },
+];
+
+const ConnectArt = ({ accent }: { accent: string }) => (
+  <Frame id="cc" accent={accent}>
+    {/* Agent desk window */}
+    <rect x="36" y="34" width="728" height="432" rx="18" fill="#121118" stroke="#fff" strokeOpacity="0.12" />
+    <path d="M36 74H764" stroke="#fff" strokeOpacity="0.08" />
+    <circle cx="58" cy="54" r="5" fill="#ff5f57" />
+    <circle cx="74" cy="54" r="5" fill="#febc2e" />
+    <circle cx="90" cy="54" r="5" fill="#28c840" />
+    <text x="112" y="58" fontSize="12" fontWeight="600" fill="#efece6" style={{ fontFamily: "var(--font-sans)" }}>
+      Agent desk · Amazon Connect
+    </text>
+    <rect x="296" y="45" width="44" height="18" rx="9" fill="#22c55e" fillOpacity="0.2" />
+    <text x="318" y="58" textAnchor="middle" fontSize="9" fontWeight="700" fill="#86efac" style={{ fontFamily: "var(--font-mono)" }}>
+      LIVE
+    </text>
+
+    {/* Chat */}
+    {ccMsgs.map((m, i) => {
+      const w = m.t.length * 6.3 + 28;
+      const x = m.me ? 424 - w : 58;
+      const y = 92 + i * 52;
+      return (
+        <g key={i} className="cc-msg" opacity="0">
+          <rect x={x} y={y} width={w} height="36" rx="12" fill={m.me ? accent : "#26252f"} fillOpacity={m.me ? 0.9 : 1} />
+          <text x={x + 14} y={y + 22} fontSize="11.5" fill={m.me ? "#1a0b10" : "#efece6"} style={{ fontFamily: "var(--font-sans)" }}>
+            {m.t}
+          </text>
+        </g>
+      );
+    })}
+
+    {/* Quick reply suggestion */}
+    <g className="cc-suggest" opacity="0">
+      <rect x="58" y="388" width="366" height="56" rx="12" fill="#fff" fillOpacity="0.05" stroke={accent} strokeOpacity="0.5" strokeDasharray="4 4" />
+      <text x="74" y="408" fontSize="9" letterSpacing="1.5" fill={accent} style={{ fontFamily: "var(--font-mono)" }}>
+        ✦ SUGGESTED REPLY
+      </text>
+      <text x="74" y="428" fontSize="11" fill="#efece6" fillOpacity="0.85" style={{ fontFamily: "var(--font-sans)" }}>
+        Apologise, then offer 30% off with code COMP30
+      </text>
+    </g>
+
+    {/* Insights column */}
+    <path d="M446 74V466" stroke="#fff" strokeOpacity="0.08" />
+    <text x="466" y="98" fontSize="9" letterSpacing="2" fill="#fff" fillOpacity="0.45" style={{ fontFamily: "var(--font-mono)" }}>
+      AI INSIGHTS · BEDROCK
+    </text>
+    <path
+      d={`M${CC.gx - CC.gr} ${CC.gy} A${CC.gr} ${CC.gr} 0 0 1 ${CC.gx + CC.gr} ${CC.gy}`}
+      fill="none"
+      stroke="#fff"
+      strokeOpacity="0.1"
+      strokeWidth="12"
+      strokeLinecap="round"
+    />
+    <path
+      className="cc-arc"
+      d={`M${CC.gx - CC.gr} ${CC.gy} A${CC.gr} ${CC.gr} 0 0 1 ${CC.gx + CC.gr} ${CC.gy}`}
+      fill="none"
+      stroke="#22c55e"
+      strokeWidth="12"
+      strokeLinecap="round"
+      strokeDasharray={CC.arc}
+      strokeDashoffset="0"
+    />
+    {[
+      { cls: "cc-s-hi", n: "100", l: "Very positive", c: "#86efac" },
+      { cls: "cc-s-lo", n: "33", l: "Negative", c: "#fca5a5" },
+      { cls: "cc-s-ok", n: "74", l: "Positive", c: "#86efac" },
+    ].map((s, i) => (
+      <g key={s.cls} className={s.cls} opacity={i === 0 ? 1 : 0}>
+        <text x={CC.gx} y={CC.gy - 4} textAnchor="middle" fontSize="26" fontWeight="700" fill="#efece6" style={{ fontFamily: "var(--font-display)" }}>
+          {s.n}
+        </text>
+        <text x={CC.gx} y={CC.gy + 22} textAnchor="middle" fontSize="11" fill={s.c} style={{ fontFamily: "var(--font-sans)" }}>
+          Sentiment: {s.l}
+        </text>
+      </g>
+    ))}
+
+    {/* Retention offer */}
+    <g className="cc-offer" opacity="0">
+      <rect x="466" y="196" width="278" height="78" rx="14" fill={accent} fillOpacity="0.12" stroke={accent} strokeOpacity="0.6" />
+      <text x="482" y="218" fontSize="9" letterSpacing="1.5" fill={accent} style={{ fontFamily: "var(--font-mono)" }}>
+        RETENTION OFFER · CHURN RISK
+      </text>
+      <text x="482" y="242" fontSize="15" fontWeight="700" fill="#efece6" style={{ fontFamily: "var(--font-sans)" }}>
+        Save 30% · code COMP30
+      </text>
+      <text x="482" y="262" fontSize="10" fill="#fff" fillOpacity="0.55" style={{ fontFamily: "var(--font-sans)" }}>
+        Premium plan · member since 2023
+      </text>
+    </g>
+
+    {/* Amazon Q over QuickSight */}
+    <g transform="translate(466 290)">
+      <rect width="278" height="160" rx="14" fill="#1a1922" stroke="#fff" strokeOpacity="0.08" />
+      <text x="16" y="24" fontSize="9" letterSpacing="1.5" fill="#fff" fillOpacity="0.45" style={{ fontFamily: "var(--font-mono)" }}>
+        QUICKSIGHT · AMAZON Q
+      </text>
+      <rect x="16" y="34" width="246" height="26" rx="8" fill="#fff" fillOpacity="0.06" />
+      <text className="cc-q" x="26" y="51" fontSize="11" fill="#efece6" style={{ fontFamily: "var(--font-sans)" }}>
+        Total pending amount?
+      </text>
+      <text className="cc-total" x="16" y="96" fontSize="26" fontWeight="700" fill="#efece6" style={{ fontFamily: "var(--font-display)" }}>
+        68,600
+      </text>
+      {[49, 10, 9.6].map((v, i) => (
+        <g key={i}>
+          <rect x="16" y={110 + i * 14} width="240" height="9" rx="4.5" fill="#fff" fillOpacity="0.05" />
+          <rect className="cc-bar" x="16" y={110 + i * 14} width={(v / 49) * 240} height="9" rx="4.5" fill="#38bdf8" fillOpacity={0.9 - i * 0.2} />
+        </g>
+      ))}
+    </g>
+  </Frame>
+);
+
 /* ─────────────────────────── Migros Bank Connect ─────────────────────────── */
 
 // Deterministic QR-like pattern (21×21 with finder squares) for the pairing card
@@ -1182,7 +1310,7 @@ const NovaArt = ({ accent }: { accent: string }) => (
 
 /* ─────────────────────────── Animation ─────────────────────────── */
 
-const scenes = { mlcc: MlccArt, migros: MigrosArt, dvag: DvagArt, mythings: MyThingsArt, sparkzen: SparkZenArt, eazybuy: EazyBuyArt, groupsync: GroupSyncArt, nova: NovaArt };
+const scenes = { mlcc: MlccArt, connect: ConnectArt, migros: MigrosArt, dvag: DvagArt, mythings: MyThingsArt, sparkzen: SparkZenArt, eazybuy: EazyBuyArt, groupsync: GroupSyncArt, nova: NovaArt };
 export type ArtKey = keyof typeof scenes;
 
 const ProjectArt = ({ art, accent, title }: { art: ArtKey; accent: string; title: string }) => {
@@ -1203,6 +1331,52 @@ const ProjectArt = ({ art, accent, title }: { art: ArtKey; accent: string; title
         stagger: { each: 0.35, repeat: -1, yoyo: true },
         ease: "sine.inOut",
       });
+
+      // AI Contact Center: chat unfolds, sentiment dips, offer appears, mood recovers
+      if (root.current?.querySelector(".cc-msg")) {
+        const msgs = gsap.utils.toArray<SVGGElement>(".cc-msg");
+        const score = (n: number, color: string) => ({
+          strokeDashoffset: CC.arc * (1 - n / 100),
+          stroke: color,
+          duration: 0.9,
+          ease: "power3.inOut",
+        });
+        gsap
+          .timeline({ repeat: -1, repeatDelay: 1 })
+          .set(msgs, { opacity: 0, y: 10 })
+          .set([".cc-offer", ".cc-suggest", ".cc-s-lo", ".cc-s-ok"], { opacity: 0 })
+          .set(".cc-s-hi", { opacity: 1 })
+          .set(".cc-arc", { strokeDashoffset: 0, stroke: "#22c55e" })
+          .to(msgs[0], { opacity: 1, y: 0, duration: 0.4, delay: 0.4 })
+          .to(msgs[1], { opacity: 1, y: 0, duration: 0.4, delay: 0.7 })
+          .to(msgs[2], { opacity: 1, y: 0, duration: 0.4, delay: 0.8 })
+          .to(".cc-arc", score(33, "#ef4444"), "+=0.2")
+          .to(".cc-s-hi", { opacity: 0, duration: 0.3 }, "<")
+          .to(".cc-s-lo", { opacity: 1, duration: 0.3 }, "<0.3")
+          .fromTo(".cc-offer", { opacity: 0, x: 24 }, { opacity: 1, x: 0, duration: 0.5, ease: "back.out(2)" })
+          .fromTo(".cc-suggest", { opacity: 0, y: 10 }, { opacity: 1, y: 0, duration: 0.4 }, "<0.2")
+          .to(msgs[3], { opacity: 1, y: 0, duration: 0.4, delay: 1 })
+          .to(".cc-suggest", { opacity: 0, duration: 0.3 }, "<")
+          .to(msgs[4], { opacity: 1, y: 0, duration: 0.4, delay: 0.8 })
+          .to(".cc-arc", score(74, "#22c55e"), "+=0.1")
+          .to(".cc-s-lo", { opacity: 0, duration: 0.3 }, "<")
+          .to(".cc-s-ok", { opacity: 1, duration: 0.3 }, "<0.3")
+          .to({}, { duration: 2 });
+        const q = { v: 0 };
+        const total = root.current.querySelector(".cc-total");
+        gsap
+          .timeline({ repeat: -1, repeatDelay: 2 })
+          .fromTo(".cc-q", { opacity: 0 }, { opacity: 1, duration: 0.4 })
+          .fromTo(q, { v: 0 }, {
+            v: 68600,
+            duration: 1.4,
+            ease: "power2.out",
+            onUpdate: () => {
+              if (total) total.textContent = Math.round(q.v).toLocaleString("en-US");
+            },
+          })
+          .fromTo(".cc-bar", { scaleX: 0 }, { scaleX: 1, transformOrigin: "0% 50%", duration: 0.8, stagger: 0.12, ease: "power3.out" }, "<");
+      }
 
       // MLCC: queue offline in the tunnel, reconnect, sync in order, operator approves
       if (root.current?.querySelector(".ml-q")) {
