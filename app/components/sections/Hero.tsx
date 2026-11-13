@@ -112,9 +112,30 @@ const Hero = () => {
             </div>
           </div>
 
-          <p className="hero-fade max-w-md text-base leading-relaxed text-paper/70 md:col-span-4 md:text-lg">
-            {Profile.intro}
-          </p>
+          <div className="hero-fade md:col-span-4">
+            <p className="max-w-md text-lg leading-relaxed text-paper/75 md:text-xl">{Profile.intro}</p>
+            <a
+              href="#about"
+              aria-label="Scroll to the About section"
+              className="group mt-8 inline-flex items-center gap-4 font-mono text-[11px] uppercase tracking-[0.2em] text-muted transition-colors duration-300 hover:text-paper"
+            >
+              <span className="relative flex h-11 w-11 items-center justify-center overflow-hidden rounded-full border border-line transition-colors duration-300 group-hover:border-paper/60">
+                <svg
+                  aria-hidden
+                  viewBox="0 0 16 16"
+                  className="h-4 w-4 motion-safe:animate-[scrollarrow_1.8s_cubic-bezier(.65,0,.35,1)_infinite]"
+                  fill="none"
+                  stroke="currentColor"
+                  strokeWidth="1.5"
+                  strokeLinecap="round"
+                  strokeLinejoin="round"
+                >
+                  <path d="M8 2v12M3 9l5 5 5-5" />
+                </svg>
+              </span>
+              Scroll to explore
+            </a>
+          </div>
 
           <div className="hero-fade flex items-center justify-between gap-6 md:col-span-3 md:justify-end">
             <Magnetic>
@@ -131,12 +152,6 @@ const Hero = () => {
           </div>
         </div>
 
-        <div className="hero-fade mt-10 flex items-center gap-3 font-mono text-[11px] uppercase tracking-[0.2em] text-muted">
-          <span className="relative block h-8 w-px overflow-hidden bg-line">
-            <span className="absolute inset-x-0 top-0 h-1/2 animate-[scrollcue_1.8s_ease-in-out_infinite] bg-paper" />
-          </span>
-          Scroll to explore
-        </div>
       </div>
     </section>
   );

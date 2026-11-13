@@ -34,40 +34,60 @@ export const NavLinks = [
   { label: "Contact", href: "#contact" },
 ];
 
-export type Skill = { name: string; image: string };
+/** `image` is a logo in /public; skills without one show a short `mark` instead. */
+export type Skill = { name: string; image?: string; mark?: string };
 
 export const SkillGroups: { title: string; skills: Skill[] }[] = [
   {
-    title: "Mobile & Frontend",
+    title: "AI & Agents",
     skills: [
-      { name: "Flutter", image: "/flutter.png" },
-      { name: "Dart", image: "/dart2.png" },
-      { name: "React", image: "/react.png" },
-      { name: "TypeScript", image: "/ts.png" },
-      { name: "JavaScript", image: "/js.png" },
-      { name: "Tailwind CSS", image: "/tailwind.png" },
-      { name: "HTML5", image: "/html.png" },
-      { name: "CSS", image: "/css.png" },
+      { name: "Bedrock AgentCore", image: "/aws.png" },
+      { name: "Strands Agents", image: "/aws.png" },
+      { name: "Claude", image: "/skills/claude.svg" },
+      { name: "Agent Bricks", image: "/skills/databricks.svg" },
+      { name: "OpenAI Agents SDK", mark: "OA" },
+      { name: "MCP", image: "/skills/modelcontextprotocol.svg" },
+      { name: "LangGraph", image: "/skills/langgraph.svg" },
+      { name: "MLflow", image: "/skills/mlflow.svg" },
     ],
   },
   {
-    title: "Backend & Cloud",
+    title: "Cloud & Data",
     skills: [
-      { name: "Node.js", image: "/node-js.png" },
-      { name: "Express", image: "/express.png" },
-      { name: "MongoDB", image: "/mongodb.png" },
-      { name: "Firebase", image: "/Firebase.png" },
       { name: "AWS", image: "/aws.png" },
-      { name: "Postman", image: "/postman.png" },
+      { name: "AWS CDK", image: "/aws.png" },
+      { name: "Amazon Connect", image: "/aws.png" },
+      { name: "AWS Lambda", image: "/aws.png" },
+      { name: "Databricks", image: "/skills/databricks.svg" },
+      { name: "Docker", image: "/skills/docker.svg" },
+      { name: "Grafana", image: "/skills/grafana.svg" },
+      { name: "OpenTofu", image: "/skills/opentofu.svg" },
     ],
   },
   {
-    title: "Languages & Tools",
+    title: "Full-stack & Web",
     skills: [
-      { name: "Java", image: "/java.png" },
-      { name: "Git", image: "/git.png" },
-      { name: "GitHub", image: "/github.png" },
-      { name: "GitLab", image: "/gitlab.png" },
+      { name: "React", image: "/skills/react.svg" },
+      { name: "Next.js", image: "/skills/nextdotjs.svg" },
+      { name: "TypeScript", image: "/skills/typescript.svg" },
+      { name: "Node.js", image: "/skills/nodedotjs.svg" },
+      { name: "Python", image: "/skills/python.svg" },
+      { name: "Tailwind CSS", image: "/skills/tailwindcss.svg" },
+      { name: "MongoDB", image: "/skills/mongodb.svg" },
+      { name: "Keycloak", image: "/skills/keycloak.svg" },
+    ],
+  },
+  {
+    title: "Mobile & DevOps",
+    skills: [
+      { name: "Flutter", image: "/skills/flutter.svg" },
+      { name: "Dart", image: "/skills/dart.svg" },
+      { name: "Kotlin", image: "/skills/kotlin.svg" },
+      { name: "Jetpack Compose", image: "/skills/jetpackcompose.svg" },
+      { name: "Firebase", image: "/skills/firebase.svg" },
+      { name: "GitLab CI/CD", image: "/skills/gitlab.svg" },
+      { name: "Git", image: "/skills/git.svg" },
+      { name: "Sentry", image: "/skills/sentry.svg" },
     ],
   },
 ];

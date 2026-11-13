@@ -86,9 +86,11 @@ body {
   }
 }
 
-@keyframes scrollcue {
-  0% { transform: translateY(-100%); }
-  100% { transform: translateY(200%); }
+/* Hero scroll cue: the arrow drops out of its circle and re-enters from the top */
+@keyframes scrollarrow {
+  0% { transform: translateY(-160%); opacity: 0; }
+  30%, 60% { transform: translateY(0); opacity: 1; }
+  100% { transform: translateY(160%); opacity: 0; }
 }
 
 nav.is-scrolled {

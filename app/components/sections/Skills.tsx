@@ -11,10 +11,31 @@ const allSkills = SkillGroups.flatMap((g) => g.skills);
 const rowA = allSkills.slice(0, Math.ceil(allSkills.length / 2));
 const rowB = allSkills.slice(Math.ceil(allSkills.length / 2));
 
+/** Logo when we have one, otherwise a small monogram in the same slot. */
+const SkillIcon = ({ skill, size, className = "" }: { skill: Skill; size: number; className?: string }) =>
+  skill.image ? (
+    <Image
+      src={skill.image}
+      alt=""
+      width={size}
+      height={size}
+      className={`object-contain ${className}`}
+      style={{ width: size, height: size }}
+    />
+  ) : (
+    <span
+      aria-hidden
+      className="flex items-center justify-center rounded-md bg-paper/90 font-mono font-bold text-ink"
+      style={{ width: size, height: size, fontSize: size * 0.42 }}
+    >
+      {skill.mark}
+    </span>
+  );
+
 const Pill = ({ skill }: { skill: Skill }) => (
   <div className="flex shrink-0 items-center gap-4 rounded-full border border-line bg-white/[0.03] py-3 pl-3 pr-7 backdrop-blur-sm">
     <span className="flex h-12 w-12 items-center justify-center rounded-full bg-white/[0.06]">
-      <Image src={skill.image} alt="" width={28} height={28} className="h-7 w-7 object-contain" />
+      <SkillIcon skill={skill} size={28} />
     </span>
     <span className="whitespace-nowrap font-display text-2xl font-semibold md:text-3xl">
       {skill.name}
@@ -118,7 +139,7 @@ const Skills = () => {
         <MarqueeRow skills={rowB} reverse />
       </div>
 
-      <div className="mt-24 grid gap-12 px-5 md:grid-cols-3 md:px-10">
+      <div className="mt-24 grid gap-12 px-5 md:grid-cols-2 md:px-10 xl:grid-cols-4">
         {SkillGroups.map((group, gi) => (
           <div key={group.title} className="skill-group">
             <div className="flex items-baseline justify-between font-mono text-xs uppercase tracking-[0.18em] text-muted">
@@ -126,18 +147,16 @@ const Skills = () => {
               <span>0{gi + 1}</span>
             </div>
             <div className="sg-line mt-3 h-px w-full origin-left bg-line" />
-            <ul className="mt-6 grid grid-cols-2 gap-3">
+            <ul className="mt-6 grid grid-cols-2 gap-3 xl:grid-cols-1">
               {group.skills.map((s) => (
                 <li
                   key={s.name}
                   className="sg-item group flex items-center gap-3 rounded-xl border border-transparent px-3 py-2 transition-colors duration-300 hover:border-line hover:bg-white/[0.03]"
                 >
-                  <Image
-                    src={s.image}
-                    alt=""
-                    width={22}
-                    height={22}
-                    className="h-[22px] w-[22px] object-contain grayscale transition duration-300 group-hover:grayscale-0"
+                  <SkillIcon
+                    skill={s}
+                    size={22}
+                    className="grayscale transition duration-300 group-hover:grayscale-0"
                   />
                   <span className="text-sm text-paper/80">{s.name}</span>
                 </li>
