@@ -110,7 +110,7 @@ export type Project = {
   /** Who it was built for/with — shown on client and company work */
   company?: string;
   accent: string;
-  art: "mlcc" | "connect" | "migros" | "dvag" | "mythings" | "sparkzen" | "eazybuy" | "groupsync" | "nova";
+  art: "mlcc" | "connect" | "dualy" | "migros" | "dvag" | "mythings" | "sparkzen" | "eazybuy" | "groupsync" | "nova";
   tech: string[];
   description: string;
   /** Your contribution and results; listed as bullet points */
@@ -162,6 +162,26 @@ export const Projects: Project[] = [
     ],
     links: [],
     note: "Proof of concept built for the customer — not publicly available",
+  },
+  {
+    title: "Dualy",
+    subtitle: "Dual-camera live streaming · Chime + IVS",
+    kind: "Client",
+    company: "Grootan Technologies, for Groopview (USA)",
+    accent: "#ef4444",
+    art: "dualy",
+    tech: ["Kotlin", "Jetpack Compose", "Amazon Chime SDK", "CameraX", "Amazon IVS", "SRT (RootEncoder)", "Foreground services"],
+    description:
+      "An Android app for Dualy, Groopview's live-streaming platform that runs the front and back cameras at the same time. Hosts join an Amazon Chime meeting with both cameras live, record the session with app and microphone audio mixed together, and broadcast it to viewers over Amazon IVS with low latency.",
+    highlights: [
+      "Built in-meeting screen and audio recording: a foreground service that captures the meeting, mixes app audio with the microphone and saves compressed MP4s",
+      "Live streaming to Amazon IVS: the recording pipeline streams over SRT to an IVS channel created on demand, with an IVS Player screen for viewers",
+      "Mute and unmute synced into the live recording in real time, plus automatic Bluetooth and speaker audio routing",
+      "Background and lifecycle handling so camera, mic and recording keep running when the app goes to the background",
+      "Contributed to the multi-camera Chime meeting screens — front and back cameras streamed together into one meeting",
+    ],
+    links: [],
+    note: "Android build for Groopview — not publicly listed",
   },
   {
     title: "Migros Bank",

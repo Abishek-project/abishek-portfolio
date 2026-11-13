@@ -358,6 +358,148 @@ const ConnectArt = ({ accent }: { accent: string }) => (
   </Frame>
 );
 
+/* ─────────────────────────── Dualy (dual-camera live streaming) ─────────────────────────── */
+
+const DY = { ivsX: 430, ivsY: 250 };
+const dyViewers = [98, 250, 402];
+
+// Back-camera view: a lit concert stage with a crowd, reused for the viewer screens
+const StageScene = ({ w, h, idp }: { w: number; h: number; idp: string }) => (
+  <g>
+    <defs>
+      <linearGradient id={`${idp}-sky`} x1="0" y1="0" x2="0" y2="1">
+        <stop offset="0%" stopColor="#1e1b4b" />
+        <stop offset="100%" stopColor="#4c1d95" />
+      </linearGradient>
+    </defs>
+    <rect width={w} height={h} fill={`url(#${idp}-sky)`} />
+    <g className="dy-beam">
+      <path d={`M${w * 0.3} 0 L${w * 0.15} ${h * 0.7} L${w * 0.45} ${h * 0.7} Z`} fill="#fde68a" fillOpacity="0.18" />
+    </g>
+    <g className="dy-beam2">
+      <path d={`M${w * 0.72} 0 L${w * 0.55} ${h * 0.7} L${w * 0.88} ${h * 0.7} Z`} fill="#f0abfc" fillOpacity="0.18" />
+    </g>
+    <rect x={w * 0.1} y={h * 0.62} width={w * 0.8} height={h * 0.08} fill="#0f0a1f" />
+    <circle cx={w * 0.5} cy={h * 0.5} r={h * 0.05} fill="#0f0a1f" />
+    <rect x={w * 0.47} y={h * 0.54} width={w * 0.06} height={h * 0.09} rx="3" fill="#0f0a1f" />
+    {Array.from({ length: 9 }, (_, i) => (
+      <circle key={i} cx={(w / 9) * (i + 0.5)} cy={h * 0.86 + (i % 2) * 4} r={h * 0.07} fill="#0b0716" />
+    ))}
+  </g>
+);
+
+const DualyArt = ({ accent }: { accent: string }) => (
+  <Frame id="dy" accent={accent}>
+    {/* Host phone */}
+    <g>
+      <rect x="56" y="54" width="232" height="400" rx="34" fill="#16151d" stroke="#fff" strokeOpacity="0.14" strokeWidth="2" />
+      <clipPath id="dy-screen">
+        <rect x="68" y="66" width="208" height="376" rx="24" />
+      </clipPath>
+      <g clipPath="url(#dy-screen)">
+        <g transform="translate(68 66)">
+          <StageScene w={208} h={376} idp="dy-host" />
+        </g>
+        {/* front camera picture-in-picture */}
+        <g transform="translate(188 118)">
+          <rect width="76" height="100" rx="12" fill="#2a2433" stroke="#fff" strokeOpacity="0.6" strokeWidth="1.5" />
+          <circle cx="38" cy="42" r="16" fill="#e8b48e" />
+          <path d="M14 100 a24 22 0 0 1 48 0 Z" fill="#6366f1" />
+        </g>
+        {/* top bar */}
+        <rect x="80" y="84" width="46" height="20" rx="6" fill={accent} />
+        <text x="103" y="98" textAnchor="middle" fontSize="10" fontWeight="800" fill="#fff" style={{ fontFamily: "var(--font-sans)" }}>
+          LIVE
+        </text>
+        <circle className="dy-rec" cx="140" cy="94" r="5" fill="#ef4444" />
+        <text className="dy-timer" x="150" y="98" fontSize="11" fill="#fff" style={{ fontFamily: "var(--font-mono)" }}>
+          00:12:34
+        </text>
+        {/* controls */}
+        <rect x="68" y="372" width="208" height="70" fill="#000" fillOpacity="0.45" />
+        <g transform="translate(110 406)">
+          <circle r="18" fill="#fff" fillOpacity="0.15" />
+          <rect x="-4.5" y="-10" width="9" height="14" rx="4.5" fill="#fff" />
+          <path d="M-8 1a8 8 0 0 0 16 0M0 9v4" stroke="#fff" strokeWidth="2" fill="none" strokeLinecap="round" />
+          <path className="dy-mute" d="M-11 -11L11 11" stroke="#ef4444" strokeWidth="3" strokeLinecap="round" opacity="0" />
+        </g>
+        <g transform="translate(172 406)">
+          <circle r="22" fill="#fff" />
+          <circle r="14" fill="#ef4444" />
+        </g>
+        <g transform="translate(234 406)">
+          <circle r="18" fill="#fff" fillOpacity="0.15" />
+          <path d="M-8 -3h12l3-4h4v12h-19Z" fill="none" stroke="#fff" strokeWidth="1.8" strokeLinejoin="round" />
+          <path d="M-2 5a4 4 0 1 1 6-3" stroke="#fff" strokeWidth="1.6" fill="none" />
+        </g>
+        {/* mic level */}
+        <g className="dy-wave" transform="translate(84 346)">
+          {[6, 12, 18, 10, 16, 8, 14, 20, 9, 13].map((hgt, i) => (
+            <rect key={i} x={i * 7} y={-hgt / 2} width="4" height={hgt} rx="2" fill="#fff" fillOpacity="0.85" />
+          ))}
+        </g>
+      </g>
+      <rect x="140" y="62" width="64" height="16" rx="8" fill="#000" />
+    </g>
+
+    {/* SRT link to IVS */}
+    <text x="300" y="214" fontSize="9" letterSpacing="2" fill="#fff" fillOpacity="0.45" style={{ fontFamily: "var(--font-mono)" }}>
+      SRT · LOW LATENCY
+    </text>
+    <path d={`M292 250 H${DY.ivsX - 40}`} stroke="#fff" strokeOpacity="0.2" strokeWidth="2" strokeDasharray="5 6" />
+    {[0, 1, 2].map((i) => (
+      <circle key={i} className="dy-packet" cx="292" cy="250" r="4.5" fill={accent} />
+    ))}
+
+    {/* Amazon IVS node */}
+    <circle className="dy-ivs-ring" cx={DY.ivsX} cy={DY.ivsY} r="40" fill="none" stroke={accent} strokeOpacity="0.5" />
+    <circle cx={DY.ivsX} cy={DY.ivsY} r="38" fill="#1b1a23" stroke="#fff" strokeOpacity="0.15" />
+    <path d={`M${DY.ivsX - 9} ${DY.ivsY - 13} L${DY.ivsX + 14} ${DY.ivsY} L${DY.ivsX - 9} ${DY.ivsY + 13} Z`} fill={accent} />
+    <text x={DY.ivsX} y={DY.ivsY + 62} textAnchor="middle" fontSize="11" fontWeight="600" fill="#efece6" style={{ fontFamily: "var(--font-sans)" }}>
+      Amazon IVS
+    </text>
+    <text x={DY.ivsX} y={DY.ivsY + 78} textAnchor="middle" fontSize="9" fill="#fff" fillOpacity="0.45" style={{ fontFamily: "var(--font-mono)" }}>
+      channel on demand
+    </text>
+
+    {/* Viewers */}
+    {dyViewers.map((vy, i) => (
+      <g key={vy}>
+        <path
+          className="dy-fan"
+          d={`M${DY.ivsX + 38} ${DY.ivsY} C 520 ${DY.ivsY}, 520 ${vy + 30}, 580 ${vy + 30}`}
+          stroke={accent}
+          strokeOpacity="0.45"
+          strokeWidth="1.5"
+          strokeDasharray="4 6"
+          fill="none"
+        />
+        <g transform={`translate(580 ${vy})`}>
+          <rect width="176" height="104" rx="12" fill="#16151d" stroke="#fff" strokeOpacity="0.12" />
+          <clipPath id={`dy-v${i}`}>
+            <rect x="6" y="6" width="164" height="70" rx="8" />
+          </clipPath>
+          <g clipPath={`url(#dy-v${i})`}>
+            <g transform="translate(6 6)">
+              <StageScene w={164} h={70} idp={`dy-v${i}`} />
+            </g>
+          </g>
+          <circle cx="20" cy="90" r="7" fill={["#f59e0b", "#22c55e", "#38bdf8"][i]} />
+          <rect x="34" y="86" width={[60, 48, 70][i]} height="7" rx="3.5" fill="#fff" fillOpacity="0.4" />
+          <text x="166" y="94" textAnchor="end" fontSize="9" fill="#fca5a5" style={{ fontFamily: "var(--font-mono)" }}>
+            ● LIVE
+          </text>
+        </g>
+      </g>
+    ))}
+    <text className="dy-watch" x="668" y="80" textAnchor="middle" fontSize="12" fontWeight="600" fill="#efece6" style={{ fontFamily: "var(--font-sans)" }}>
+      1,248 watching
+    </text>
+
+    <Sparkles points={[[360, 120, 5], [520, 450, 4], [40, 40, 5]]} />
+  </Frame>
+);
+
 /* ─────────────────────────── Migros Bank Connect ─────────────────────────── */
 
 // Deterministic QR-like pattern (21×21 with finder squares) for the pairing card
@@ -1310,7 +1452,7 @@ const NovaArt = ({ accent }: { accent: string }) => (
 
 /* ─────────────────────────── Animation ─────────────────────────── */
 
-const scenes = { mlcc: MlccArt, connect: ConnectArt, migros: MigrosArt, dvag: DvagArt, mythings: MyThingsArt, sparkzen: SparkZenArt, eazybuy: EazyBuyArt, groupsync: GroupSyncArt, nova: NovaArt };
+const scenes = { mlcc: MlccArt, connect: ConnectArt, dualy: DualyArt, migros: MigrosArt, dvag: DvagArt, mythings: MyThingsArt, sparkzen: SparkZenArt, eazybuy: EazyBuyArt, groupsync: GroupSyncArt, nova: NovaArt };
 export type ArtKey = keyof typeof scenes;
 
 const ProjectArt = ({ art, accent, title }: { art: ArtKey; accent: string; title: string }) => {
@@ -1331,6 +1473,52 @@ const ProjectArt = ({ art, accent, title }: { art: ArtKey; accent: string; title
         stagger: { each: 0.35, repeat: -1, yoyo: true },
         ease: "sine.inOut",
       });
+
+      // Dualy: live broadcast flows over SRT to IVS and out to viewers
+      if (root.current?.querySelector(".dy-packet")) {
+        gsap.to(".dy-rec", { opacity: 0.2, duration: 0.6, repeat: -1, yoyo: true });
+        gsap.to(".dy-beam", { rotate: 12, transformOrigin: "50% 0%", duration: 2.4, repeat: -1, yoyo: true, ease: "sine.inOut" });
+        gsap.to(".dy-beam2", { rotate: -12, transformOrigin: "50% 0%", duration: 2.8, repeat: -1, yoyo: true, ease: "sine.inOut" });
+        gsap.fromTo(".dy-packet", { x: 0, opacity: 1 }, {
+          x: DY.ivsX - 40 - 292,
+          duration: 1.1,
+          stagger: { each: 0.37, repeat: -1 },
+          ease: "none",
+        });
+        gsap.to(".dy-fan", { strokeDashoffset: -40, duration: 1.2, repeat: -1, ease: "none" });
+        gsap.fromTo(".dy-ivs-ring", { attr: { r: 40 }, strokeOpacity: 0.6 }, { attr: { r: 64 }, strokeOpacity: 0, duration: 1.6, repeat: -1, ease: "power1.out" });
+        gsap.to(".dy-wave rect", {
+          scaleY: () => gsap.utils.random(0.3, 1.2),
+          transformOrigin: "50% 50%",
+          duration: 0.25,
+          repeat: -1,
+          repeatRefresh: true,
+          stagger: 0.03,
+        });
+        gsap
+          .timeline({ repeat: -1, repeatDelay: 2.5 })
+          .to(".dy-mute", { opacity: 1, duration: 0.2, delay: 2.5 })
+          .to(".dy-wave", { opacity: 0.15, duration: 0.3 }, "<")
+          .to(".dy-mute", { opacity: 0, duration: 0.2, delay: 1.6 })
+          .to(".dy-wave", { opacity: 1, duration: 0.3 }, "<");
+        const t = { s: 754 };
+        const timer = root.current.querySelector(".dy-timer");
+        const watch = root.current.querySelector(".dy-watch");
+        gsap.to(t, {
+          s: 754 + 600,
+          duration: 600,
+          ease: "none",
+          repeat: -1,
+          onUpdate: () => {
+            const v = Math.floor(t.s);
+            const hh = String(Math.floor(v / 3600)).padStart(2, "0");
+            const mm = String(Math.floor((v % 3600) / 60)).padStart(2, "0");
+            const ss = String(v % 60).padStart(2, "0");
+            if (timer) timer.textContent = `${hh}:${mm}:${ss}`;
+            if (watch) watch.textContent = `${(1248 + (v - 754) * 3).toLocaleString("en-US")} watching`;
+          },
+        });
+      }
 
       // AI Contact Center: chat unfolds, sentiment dips, offer appears, mood recovers
       if (root.current?.querySelector(".cc-msg")) {

@@ -159,7 +159,7 @@ const Projects = () => {
                 />
                 <span className="relative grid grid-cols-12 items-center gap-4 py-6 md:px-4 md:py-8">
                   <span className="col-span-2 overflow-hidden font-mono text-xs text-muted md:col-span-1">
-                    <span className="pj-rise block">0{i + 1}</span>
+                    <span className="pj-rise block">{String(i + 1).padStart(2, "0")}</span>
                   </span>
 
                   <span className="col-span-8 overflow-hidden md:col-span-7">
