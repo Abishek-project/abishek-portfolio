@@ -19,9 +19,9 @@ const mono = JetBrains_Mono({
 });
 
 export const metadata: Metadata = {
-  title: "Abishek J — Flutter & Full-Stack Developer",
+  title: "Abishek J — Senior Software Engineer",
   description:
-    "Portfolio of Abishek J, a Flutter and full-stack developer based in Chennai building high-performance mobile, desktop and web apps.",
+    "Portfolio of Abishek J, a senior software engineer in Chennai building AI agents, full-stack products and mobile apps, and an AWS Certified Solutions Architect.",
 };
 
 export default function RootLayout({

@@ -1,16 +1,17 @@
 export const Profile = {
   name: "Abishek J",
   firstName: "Abishek",
-  roles: ["Flutter Developer", "Full-Stack Engineer", "Mobile & Desktop Apps"],
+  tagline: "Software that thinks, scales and ships",
+  roles: ["Senior Software Engineer", "AI Agents & LLM Apps", "Full-Stack & Cloud", "Mobile Apps", "AWS Certified Architect"],
   location: "Chennai, India",
   timeZone: "Asia/Kolkata",
   email: "abishekabi992@gmail.com",
   phone: "+91 7339174247",
   currentCompany: "Grootan Technologies",
   intro:
-    "I design and build beautiful, high-performance apps for mobile, desktop and the web — and I'm comfortable shipping the backend that powers them.",
+    "I'm a senior software engineer with 4+ years of experience shipping production software end to end — AI agents, full-stack products and mobile apps for healthcare, banking, e-commerce and construction teams. I design and build on AWS and Databricks, from multi-agent systems to the apps people use every day, and I'm an AWS Certified Solutions Architect.",
   about:
-    "I'm a Flutter developer with 4+ years of experience turning ideas into polished, secure products. From fintech desktop apps for banks to AI-powered assistants, I care about clean architecture, smooth interactions and software that people genuinely enjoy using.",
+    "I'm a software engineer with 4+ years of experience shipping production software end to end. I build AI agents — including multi-agent systems on Amazon Bedrock AgentCore and Databricks — and design the AWS cloud solutions around them. I also build full-stack web apps and have shipped multiple mobile apps to the App Store and Google Play, including secure apps for banks and financial firms.",
 };
 
 export const Stats = [

@@ -39,7 +39,13 @@ const Hero = () => {
         const next = roles[(i + 1) % roles.length];
         cycle
           .to(role, { yPercent: -100, duration: 0.7, ease: "power3.inOut" }, "+=2")
-          .fromTo(next, { yPercent: 100 }, { yPercent: 0, duration: 0.7, ease: "power3.inOut" }, "<");
+          .fromTo(
+            next,
+            { yPercent: 100 },
+            // immediateRender off: otherwise building the loop hides the first role
+            { yPercent: 0, duration: 0.7, ease: "power3.inOut", immediateRender: false },
+            "<"
+          );
       });
 
       // Scroll-out: letters drift apart, content lifts and fades
@@ -78,7 +84,7 @@ const Hero = () => {
 
       <div className="hero-content relative">
         <div className="mb-6 flex flex-wrap items-end justify-between gap-4 font-mono text-xs uppercase tracking-[0.18em] text-muted">
-          <p className="hero-fade">( Portfolio — {new Date().getFullYear()} )</p>
+          <p className="hero-fade">( {Profile.tagline} )</p>
           <p className="hero-fade">Based in {Profile.location}</p>
         </div>
 
