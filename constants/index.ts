@@ -15,10 +15,10 @@ export const Profile = {
 };
 
 export const Stats = [
-  { value: 4, suffix: "+", label: "Years building production apps" },
-  { value: 70, suffix: "%", label: "Fewer unauthorized access incidents" },
-  { value: 50, suffix: "%", label: "Faster multi-device setup" },
-  { value: 45, suffix: "%", label: "Fewer login failures with biometrics" },
+  { value: 4, suffix: "+", label: "Years shipping production software" },
+  { value: 12, suffix: "", label: "Projects shipped across AI, cloud and mobile" },
+  { value: 60, suffix: "K+", label: "Mobile app downloads" },
+  { value: 5, suffix: "", label: "Countries with clients" },
 ];
 
 export const Socials = [
