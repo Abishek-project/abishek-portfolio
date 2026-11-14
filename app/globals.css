@@ -98,10 +98,3 @@ nav.is-scrolled {
   -webkit-backdrop-filter: blur(14px);
   backdrop-filter: blur(14px);
 }
-
-/* Hero: letters light up as the cursor nears (--lit is set from JS, 0–1) */
-.hs-name > div {
-  --lit: 0;
-  color: color-mix(in oklab, #efece6, #a78bfa calc(var(--lit) * 100%));
-  text-shadow: 0 0 calc(var(--lit) * 60px) rgba(167, 139, 250, 0.55);
-}
