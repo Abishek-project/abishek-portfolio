@@ -63,8 +63,8 @@ const Experience = () => {
               Where I&apos;ve <span className="text-gradient">worked</span>
             </SplitReveal>
             <p className="mt-6 max-w-sm text-paper/60">
-              Building secure, high-performance products for fintech, enterprise and
-              consumer teams.
+              From AI agents and cloud data platforms to secure banking apps — 4+ years
+              of shipping for teams in e-commerce, healthcare, finance and construction.
             </p>
           </div>
         </div>
@@ -104,7 +104,7 @@ const Experience = () => {
                       className="xp-point group flex gap-4 border-t border-line py-4 text-paper/70 transition-colors duration-300 hover:text-paper"
                     >
                       <span className="mt-[0.35em] h-1.5 w-1.5 shrink-0 rounded-full bg-violet transition-transform duration-300 group-hover:scale-150" />
-                      <span>{point}</span>
+                      <span className="whitespace-pre-line">{point}</span>
                     </li>
                   ))}
                 </ul>
