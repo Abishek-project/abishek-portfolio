@@ -1,28 +1,12 @@
 "use client";
 
-import { useEffect, useRef, useState } from "react";
+import { useRef, useState } from "react";
 import { gsap, useGSAP } from "@/lib/gsap";
 import { Profile, Socials } from "@/constants";
 import SplitReveal from "../SplitReveal";
 import Magnetic from "../Magnetic";
 import { RollText } from "../Navbar";
-
-const useLocalTime = () => {
-  const [time, setTime] = useState("");
-  useEffect(() => {
-    const fmt = new Intl.DateTimeFormat("en-GB", {
-      timeZone: Profile.timeZone,
-      hour: "2-digit",
-      minute: "2-digit",
-      second: "2-digit",
-    });
-    const tick = () => setTime(fmt.format(new Date()));
-    tick();
-    const id = setInterval(tick, 1000);
-    return () => clearInterval(id);
-  }, []);
-  return time;
-};
+import { useLocalTime } from "@/lib/useLocalTime";
 
 const Field = ({
   id,

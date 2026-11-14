@@ -76,7 +76,7 @@ const Experience = () => {
 
           <div className="flex flex-col gap-24">
             {Experiences.map((xp, i) => (
-              <article key={xp.company} className="xp-item relative pl-12 md:pl-16">
+              <article key={`${xp.company}-${xp.duration}`} className="xp-item relative pl-12 md:pl-16">
                 <span className="xp-dot absolute left-0 top-2 block h-[15px] w-[15px] rounded-full border-2 border-ink bg-cyan shadow-[0_0_20px_#22d3ee]" />
 
                 <div className="flex flex-wrap items-center gap-x-6 gap-y-2 font-mono text-xs uppercase tracking-[0.18em] text-muted">
